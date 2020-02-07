@@ -1,0 +1,7 @@
+{
+  "name": "numbers-creator",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

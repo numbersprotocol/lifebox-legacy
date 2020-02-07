@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Numbers - Take Back Control</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class="tutorial-page">
+
+  <ion-slides pager>
+    <ion-slide *ngFor="let slide of slides">
+      <ion-toolbar>
+        <ion-buttons end>
+          <button ion-button on-click="goToKeyGeneration()" color="primary">Skip</button>
+        </ion-buttons>
+      </ion-toolbar>
+      <h2 class="slide-title" [innerHTML]="slide.title"></h2>
+      <p [innerHTML]="slide.description"></p>
+      <img [src]="slide.image" class="slide-image"/>
+    </ion-slide>
+    <ion-slide>
+      <ion-toolbar>
+      </ion-toolbar>
+      <h2 class="slide-title" [innerHTML]="ending.title"></h2>
+      <p [innerHTML]="ending.description"></p>
+      <!--
+      <img [src]="ending.image" class="slide-image"/>
+      -->
+      <br><br><br><br><br>
+      <button ion-button on-click="goToKeyGeneration()" large clear icon-end color="primary">
+        Continue
+        <ion-icon name="arrow-forward"></ion-icon>
+      </button>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

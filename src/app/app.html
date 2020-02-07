@@ -1,0 +1,45 @@
+<ion-menu [content]="mainContent">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        Settings
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="side-menu21">
+    <ion-list id="settings-list3">
+      <ion-item color="none" menuClose="" on-click="goToProfile()" id="settings-list-item11">
+        Profile 
+      </ion-item>
+      <ion-item-sliding>
+        <ion-item color="none" id="settings-list-item17" menuClose="" on-click="goToWorkInProgress()">
+          Privacy
+        </ion-item>
+        <ion-item-options side="left">
+          <button ion-button color="positive"></button>
+          <button ion-button color="positive"></button>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item-sliding>
+        <ion-item color="none" menuClose="" on-click="goToAbout()" id="settings-list-item16">
+          About
+        </ion-item>
+        <ion-item-options side="left">
+          <button ion-button color="positive"></button>
+          <button ion-button color="positive"></button>
+        </ion-item-options>
+      </ion-item-sliding>
+      <ion-item color="none" menuClose="" on-click="goToHelp()" id="settings-list-item13">
+        Help
+      </ion-item>
+      <ion-item>
+        Version {{ this.version }}
+      </ion-item>
+    </ion-list>
+    <button id="settings-button1" on-click="goToLogin()" ion-button color="light" block>
+      Sign Out
+    </button>
+  </ion-content>
+</ion-menu>
+
+<ion-nav #mainContent [root]="rootPage"></ion-nav>

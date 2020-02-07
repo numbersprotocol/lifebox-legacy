@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Record Center
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only solid>
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page2">
+  <form id="recordCenter-form2">
+    <ion-item id="recordCenter-toggle3">
+      <ion-label>
+        Pedometer
+      </ion-label>
+      <ion-toggle [(ngModel)]="pedometerEnabled" name="pedometerEnabled"
+                  checked=false
+                  color="dark"                  
+                  (ionChange)=handlePedometerToggleChange()></ion-toggle>
+    </ion-item>
+    <ion-item id="recordCenter-toggle2">
+      <ion-label>
+        Location
+      </ion-label>
+      <ion-toggle color="dark" checked="false" 
+                  [(ngModel)]="locationEnabled" name="locationEnabled"
+                  (ionChange)=handleLocationToggleChange()></ion-toggle>
+    </ion-item>
+    <ion-item id="recordCenter-gyroscopeToggle">
+      <ion-label>
+        Gyroscope 
+      </ion-label>
+      <ion-toggle color="dark" checked="false" 
+                  [(ngModel)]="gyroscopeEnabled" name="gyroscopeEnabled"
+                  (ionChange)=handleGyroscopeToggleChange()></ion-toggle>
+    </ion-item>
+    <ion-item-divider color="light" id="recordCenter-list-item-divider1">
+      Customized Data Classes
+    </ion-item-divider>
+    <ion-list id="custom-classes">
+      <ion-item *ngFor="let class of customClasses">
+        <ion-icon name={{class.icon}} item-left></ion-icon>
+        <ion-label>{{class.name}}<span *ngIf="class.unit">({{class.unit}})</span></ion-label>
+        <ion-input [(ngModel)]="class.records[0].value" type="number" [ngModelOptions]="{standalone: true}" name="class_value">{{class.records[0].value}}</ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+  <button id="recordCenter-button18" on-click="update()" ion-button color="light" block>
+    Update
+  </button>
+</ion-content>

@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      Activity {{dateString}}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page4">
+  <ion-list id="journal-0509-list11">
+    <ion-item color="none" id="journal-0509-list-item69">
+      <ion-icon name="thermometer" item-left></ion-icon>
+      Temp：29°C
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" id="journal-0509-list-item70">
+      <ion-icon name="cloud" item-left></ion-icon>
+      Air : 90 US AQI
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" id="journal-0509-list-item100">
+      <ion-icon name="water" item-left></ion-icon>
+      RH 73%
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" id="journal-0509-list-item72">
+      <ion-icon name="alarm" item-left></ion-icon>
+      Woke up at {{this.wokeupTime}}
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" id="journal-0509-list-item71">
+      <ion-icon name="moon" item-left></ion-icon>
+      Sleeping time：{{this.sleepTime}} hrs
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" id="journal-0509-list-item68">
+      <ion-icon name="walk" item-left></ion-icon>
+      {{ this.dailySteps }} steps
+      <ion-note item-right></ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list id="journal-0509-list15">
+    <ion-item color="none" id="journal-0509-list-item67">
+      <ion-icon name="pin" item-left></ion-icon>
+      {{ this.indoorPercent }}% Indoor
+    </ion-item>
+    <ion-item color="none" id="journal-0509-list-item107">
+      <ion-icon name="pin" item-left></ion-icon>
+      {{ this.outdoorPercent }}% Outdoor
+    </ion-item>
+    <ion-item color="none" href="" id="journal-0509-list-item105">
+      <ion-icon name="happy" item-left></ion-icon>
+      Walk with nini：1
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" id="journal-0509-list-item103">
+      <ion-icon name="eye" item-left></ion-icon>
+      Watch TV：120 min
+      <ion-note item-right></ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list id="journal-0509-list6">
+    <ion-item color="none" href="" on-click="goToCalories0509()" id="journal-0509-list-item106">
+      <ion-icon name="pizza" item-left></ion-icon>
+      Calories：1820 kcal
+      <ion-note item-right></ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list id="custom-classes">
+    <ion-item *ngFor="let class of customClasses">
+      <ion-icon name="add-circle" item-start></ion-icon>
+      {{class.name}}: 0 {{class.unit}}
+    </ion-item>
+  </ion-list>
+  <button id="journal-0509-button16" ion-button color="light" on-click="goToSharePopUp()" block href="">
+    <ion-icon name="share"></ion-icon>
+    Share with friends
+  </button>
+</ion-content>

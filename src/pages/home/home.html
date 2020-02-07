@@ -1,0 +1,113 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-buttons start>
+      <button ion-button icon-only>
+        <ion-icon name="person"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>
+      Home
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only solid>
+        <ion-icon name="settings"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content padding id="page4">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div id="home-markdown11" style="text-align:center;" class="show-list-numbers-and-dots">
+    <p style="color:#000000;font-size:18px;">
+      My daily activity
+    </p>
+  </div>
+  <ion-list id="home-list11">
+    <ion-item color="none" on-click="goToTemperature()" id="home-list-item69">
+      <ion-icon name="thermometer" item-left></ion-icon>
+      Temp: {{ this.weatherReport.weatherTempCelsius }}°C
+      <ion-note item-right>{{ this.weatherReport.weatherTempCelsiusDiff }}</ion-note>
+    </ion-item>
+    <ion-item color="none" on-click="goToAQI()" id="home-list-item70">
+      <ion-icon name="cloud" item-left></ion-icon>
+      Air: {{ this.airQualityReport.airQualityIndex }} AQI {{ this.airQualityReport.airQualityStatus }}
+      <ion-note item-right>{{ this.airQualityReport.airQualityIndexDiff }}</ion-note>
+    </ion-item>
+    <ion-item color="none" on-click="goToHumidity()" id="home-list-item100">
+      <ion-icon name="water" item-left></ion-icon>
+      RH: {{ this.weatherReport.weatherHumidity }}%
+      <ion-note item-right>{{ this.weatherReport.weatherHumidityDiff }}</ion-note>
+    </ion-item>
+    <ion-item color="none" on-click="goToWokeupTime()" id="home-list-item72">
+      <ion-icon name="alarm" item-left></ion-icon>
+      Woke up at {{this.sleepActivityReport.wokeupTime}}
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" on-click="goToSleepingTime()" id="home-list-item71">
+      <ion-icon name="moon" item-left></ion-icon>
+      Sleeping time: {{this.sleepActivityReport.sleepTime}} hrs
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" on-click="goToSteps()" id="home-list-item68">
+      <ion-icon name="walk" item-left></ion-icon>
+      {{ this.steps }} steps
+      <ion-note item-right></ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list id="home-list15">
+    <ion-item color="none" on-click="goToSevenDaysIndoor()" id="home-list-item67">
+      <ion-icon name="pin" item-left></ion-icon>
+      {{ this.iodoorReport.indoorPercent }}% Indoor
+    </ion-item>
+    <ion-item color="none" on-click="goToSevenDaysOutdoor()" id="home-list-item107">
+      <ion-icon name="pin" item-left></ion-icon>
+      {{ this.iodoorReport.outdoorPercent }}% Outdoor
+    </ion-item>
+    <ion-item color="none" on-click="goToWalkWithNini()" href="" id="home-list-item105">
+      <ion-icon name="happy" item-left></ion-icon>
+      Walk with nini: 1
+      <ion-note item-right></ion-note>
+    </ion-item>
+    <ion-item color="none" id="home-list-item103">
+      <ion-icon name="eye" item-left></ion-icon>
+      Watch TV: 120 min
+      <ion-note item-right></ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list id="home-list6">
+    <ion-item color="none" href="" on-click="goToCalories()" id="home-list-item106">
+      <ion-icon name="pizza" item-left></ion-icon>
+      Calories: 1820 kcal
+      <ion-note item-right></ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-list id="custom-classes">
+    <ion-item-sliding *ngFor="let class of customClasses">
+      <ion-item on-click="goToCustomClass(class.id, class.name, class.unit, class.min, class.max)">
+        <ion-icon name={{class.icon}} item-left></ion-icon>
+        {{class.name}}: {{class.records[0].value != null ? class.records[0].value.toFixed(1) : '- -' }} {{class.unit}}
+      </ion-item>
+      <ion-item-options side="right">
+        <button ion-button large="true" strong="true" color="positive" on-click="increaseCustomClassRecord(class)">
+          <span>  +  </span>
+        </button>
+        <button ion-button large="true" strong="true" color="positive" on-click="decreaseCustomClassRecord(class)">
+          <span>  -  </span>
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <button id="home-button15" ion-button on-click="goToAddNewDataClass()" color="light" block href="">
+    <ion-icon name="add"></ion-icon>
+    Add a new data class
+  </button>
+  <button id="home-button16" ion-button color="light" on-click="goToSharePopUp()" block href="">
+    <ion-icon name="share"></ion-icon>
+    Share your day with friends
+  </button>
+</ion-content>
