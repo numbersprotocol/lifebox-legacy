@@ -1,20 +1,20 @@
 # lifebox
 Personal life data management management and analysis.
 
-# Preview on Browser
+### Preview on Browser
 
 ```
 $ npm start
 ```
 
-# Build and Deploy: Android
+### Build and Deploy: Android
 
 ```
 $ ionic cordova platform add android
 $ ionic cordova run android
 ```
 
-# Reference Development Environment
+### Reference Development Environment
 
 ```
 $ ionic info
