@@ -1,0 +1,43 @@
+page-steps {
+    body {
+      font-family: 'Open Sans', sans-serif;
+    }
+
+    div#layout {
+      text-align: center;
+    }
+
+    div#container {
+      width: 900px;
+      height: 500px;
+      margin: auto;
+      background-color: #ffffff;
+    }
+
+    path {
+      stroke: gray;
+    }
+
+    line {
+      stroke: gray;
+    }
+
+    line#limit {
+      stroke: #FED966;
+      stroke-width: 3;
+      stroke-dasharray: 3 6;
+    }
+
+    .grid path {
+      stroke-width: 0;
+    }
+
+    .grid .tick line {
+      stroke: #9FAAAE;
+      stroke-opacity: 0.3;
+    }
+
+    text.source {
+      font-size: 10px;
+    }
+}
