@@ -1,0 +1,149 @@
+{
+    "DIALOG": {
+        "OK": "OK",
+        "CANCEL": "CANCEL",
+        "CLEAR": "CLEAR",
+        "CONFIRM": "CONFIRM"
+    },
+    "LOADING": {
+        "INITIALIZE": "Initializing App"
+    },
+    "LOGIN": {
+        "HEADER": "Login",
+        "BUTTON": "Log In",
+        "CREATE_KEY_BUTTON": "Or create your unique key"
+    },
+    "TABS": {
+        "HOME": "Home",
+        "RECORD": "Record",
+        "JOURNAL": "Journal",
+        "FEED": "Feed"
+    },
+    "SIDE_MENU": {
+        "HEADER": "Settings",
+        "PROFILE": "Profile",
+        "PRIVACY": "Privacy",
+        "ABOUT": "About",
+        "HELP": "Help",
+        "VERSION": "Version",
+        "SIGN_OUT_BUTTON": "SIGN OUT"
+    },
+    "PROFILE": {
+        "HEADER": "Profile",
+        "CHANGE_PROFILE_PICTURE_BUTTON": "CHANGE PROFILE PICTURE",
+        "FIRST_NAME": "First Name",
+        "LAST_NAME": "Last Name",
+        "EMAIL": "Email",
+        "BIRTHDAY": "Birthday",
+        "GENDER": "Gender",
+        "NATIONALITY": "Nationality",
+        "CITY": "City",
+        "UPDATE_BUTTON": "UPDATE",
+        "PREFER_NOT_TO_SHOW": "Prefer not to show",
+        "MALE": "Male",
+        "FEMALE": "Female",
+        "NONBINARY": "Nonbinary",
+        "LANGUAGE": "Language"
+    },
+    "PRIVACY": {
+        "HEADER": "Work In Progress",
+        "BACK_BUTTON": "BACK TO MAIN PAGE"
+    },
+    "ABOUT": {
+        "HEADER": "About"
+    },
+    "HELP": {
+        "HEADER": "Lifebox - Take Back Control",
+        "TOUR_P1_TITLE": "Let your data go",
+        "TOUR_P1_DESC": "Let your data work for you",
+        "TOUR_P2_TITLE": "Monetization",
+        "TOUR_P2_DESC": "Invest with your personal data",
+        "TOUR_P3_TITLE": "Full Control",
+        "TOUR_P3_DESC": "Control and own your personal data",
+        "TOUR_P4_TITLE": "Transparency",
+        "TOUR_P4_DESC": "Approve who can license your data",
+        "TOUR_P5_TITLE": "Take Back Control",
+        "TOUR_P5_DESC": "Data is here, let us help you understand what it says",
+        "CONTINUE": "CONTINUE"
+    },
+    "HOME": {
+        "HEADER": "Home",
+        "TITLE": "My daily activity"
+    },
+    "VISUALIZATION": {
+        "WEEK_DAYS": {
+            "SUN": "Sun",
+            "MON": "Mon",
+            "TUE": "Tue",
+            "WED": "Wed",
+            "THU": "Thu",
+            "FRI": "Fri",
+            "SAT": "Sat"
+        },
+        "SHARE_BUTTON": "SHARE WITH FRIENDS",
+        "BAR_CHART": {
+            "HEADER": "",
+            "IN_LAST_7_DAYS": "In Last 7 Days",
+            "TODAY": "Today",
+            "AVERAGE": "Average",
+            "MAX": "Max",
+            "MIN": "Min"
+        },
+        "SCATTER_PLOT": {
+            "HEADER": "Visualization",
+            "DATA_OF_PAST": "Data of Past"
+        }
+    },
+    "DATA_REPORT": {
+        "NOT_AVAILABLE": "N/A",
+        "TEMPERATURE": "Temp",
+        "AQ": "Air",
+        "AQI": "AQI",
+        "AQI_STATUS": {
+            "GOOD": "Good",
+            "MODERATE": "Moderate",
+            "UNHEALTHY": "Unhealthy",
+            "VERY_UNHEALTHY": "Very Unhealthy",
+            "HAZARDOUS": "Hazardous",
+            "UNKNOWN": "Unknown"
+        },
+        "HUMIDITY": "RH",
+        "WOKE_UP_TIME": "Woke up at",
+        "SLEEPING_TIME": "Sleeping time",
+        "HRS": "hrs",
+        "STEPS": "steps",
+        "INDOOR": "Indoor",
+        "OUTDOOR": "Outdoor",
+        "ADD_CUSTOM_CLASS_BUTTON": "ADD A NEW DATA CLASS",
+        "SHARE_BUTTON": "SHARE YOUR DAY WITH FRIENDS"
+    },
+    "ADD_DATA_CLASS": {
+        "HEADER": "Add New Data Class",
+        "NAME": "Name",
+        "EXPECTED_MIN": "Expected Min",
+        "EXPECTED_MAX": "Expected Max",
+        "INTERVAL": "Interval",
+        "UNIT": "Unit",
+        "CALORIES": "Calories",
+        "KCAL": "kcal",
+        "DONE_BUTTON": "DONE"
+    },
+    "RECORD": {
+        "HEADER": "Record Center",
+        "SENSORS": "Sensors",
+        "PEDOMETER": "Pedometer",
+        "LOCATION": "Location",
+        "GYROSCOPE": "Gyroscope",
+        "BETA": "beta",
+        "CUSTOM_CLASSES": "Customized Data Classes",
+        "UPDATE_BUTTON": "UPDATE"
+    },
+    "JOURNAL": {
+        "HEADER": "Journal",
+        "ACTIVITY": "Activity"
+    },
+    "FEED": {
+        "HEADER": "Feed",
+        "MSG": "Coming Soon"
+    }
+}

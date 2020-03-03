@@ -1,0 +1,149 @@
+{
+    "DIALOG": {
+        "OK": "OK",
+        "CANCEL": "CANCEL",
+        "CLEAR": "CLEAR",
+        "CONFIRM": "CONFIRM"
+    },
+    "LOADING": {
+        "INITIALIZE": "Iniciando aplicación"
+    },
+    "LOGIN": {
+        "HEADER": "Iniciar sesión",
+        "BUTTON": "Iniciar sesión",
+        "CREATE_KEY_BUTTON": "Or create your unique key"
+    },
+    "TABS": {
+        "HOME": "Casa",
+        "RECORD": "Grabar",
+        "JOURNAL": "diario",
+        "FEED": "Feed"
+    },
+    "SIDE_MENU": {
+        "HEADER": "Configuraciones",
+        "PROFILE": "Perfil",
+        "PRIVACY": "Intimidad",
+        "ABOUT": "Acerca de",
+        "HELP": "Ayuda",
+        "VERSION": "Versión",
+        "SIGN_OUT_BUTTON": "DESCONECTAR"
+    },
+    "PROFILE": {
+        "HEADER": "Perfil",
+        "CHANGE_PROFILE_PICTURE_BUTTON": "CAMBIAR FOTO DE PERFIL",
+        "FIRST_NAME": "Primer nombre",
+        "LAST_NAME": "Apellido",
+        "EMAIL": "Email",
+        "BIRTHDAY": "Cumpleaños",
+        "GENDER": "Género",
+        "NATIONALITY": "Nacionalidad",
+        "CITY": "Ciudad",
+        "UPDATE_BUTTON": "ACTUALIZAR",
+        "PREFER_NOT_TO_SHOW": "Prefiero no mostrar",
+        "MALE": "Hombre",
+        "FEMALE": "Hembra",
+        "NONBINARY": "No binario",
+        "LANGUAGE": "Language"
+    },
+    "PRIVACY": {
+        "HEADER": "Trabajo en progreso",
+        "BACK_BUTTON": "VOLVER A LA PÁGINA PRINCIPAL"
+    },
+    "ABOUT": {
+        "HEADER": "Acerca de"
+    },
+    "HELP": {
+        "HEADER": "Lifebox - Take Back Control",
+        "TOUR_P1_TITLE": "Let your data go",
+        "TOUR_P1_DESC": "Let your data work for you",
+        "TOUR_P2_TITLE": "Monetization",
+        "TOUR_P2_DESC": "Invest with your personal data",
+        "TOUR_P3_TITLE": "Full Control",
+        "TOUR_P3_DESC": "Control and own your personal data",
+        "TOUR_P4_TITLE": "Transparency",
+        "TOUR_P4_DESC": "Approve who can license your data",
+        "TOUR_P5_TITLE": "Take Back Control",
+        "TOUR_P5_DESC": "Data is here, let us help you understand what it says",
+        "CONTINUE": "CONTINUE"
+    },
+    "HOME": {
+        "HEADER": "Casa",
+        "TITLE": "Mi actividad diaria"
+    },
+    "VISUALIZATION": {
+        "WEEK_DAYS": {
+            "SUN": "domingo",
+            "MON": "lunes",
+            "TUE": "martes",
+            "WED": "miércoles",
+            "THU": "jueves",
+            "FRI": "viernes",
+            "SAT": "sábado"
+        },
+        "SHARE_BUTTON": "COMPARTIR CON AMIGOS",
+        "BAR_CHART": {
+            "HEADER": "",
+            "IN_LAST_7_DAYS": "En los últimos 7 días",
+            "TODAY": "Hoy",
+            "AVERAGE": "Promedio",
+            "MAX": "Máxima",
+            "MIN": "Mínimo"
+        },
+        "SCATTER_PLOT": {
+            "HEADER": "Visualización",
+            "DATA_OF_PAST": "Datos del pasado"
+        }
+    },
+    "DATA_REPORT": {
+        "NOT_AVAILABLE": "N/A",
+        "TEMPERATURE": "Temperatura",
+        "AQ": "Air",
+        "AQI": "AQI",
+        "AQI_STATUS": {
+            "GOOD": "Bueno",
+            "MODERATE": "Moderar",
+            "UNHEALTHY": "Insalubre",
+            "VERY_UNHEALTHY": "Muy poco saludable",
+            "HAZARDOUS": "Peligroso",
+            "UNKNOWN": "Desconocido"
+        },
+        "HUMIDITY": "HUMEDAD",
+        "WOKE_UP_TIME": "Desperté a las",
+        "SLEEPING_TIME": "Tiempo de sueño",
+        "HRS": "hrs",
+        "STEPS": "pasos",
+        "INDOOR": "Interior",
+        "OUTDOOR": "Al aire libre",
+        "ADD_CUSTOM_CLASS_BUTTON": "AGREGAR UNA NUEVA CLASE DE DATOS",
+        "SHARE_BUTTON": "COMPARTE TU DÍA CON AMIGOS"
+    },
+    "ADD_DATA_CLASS": {
+        "HEADER": "Agregar nueva clase de datos",
+        "NAME": "Nombre",
+        "EXPECTED_MIN": "Min esperado",
+        "EXPECTED_MAX": "Max esperado",
+        "INTERVAL": "Intervalo",
+        "UNIT": "Unidad",
+        "CALORIES": "Calorías",
+        "KCAL": "kcal",
+        "DONE_BUTTON": "HECHO"
+    },
+    "RECORD": {
+        "HEADER": "Centro de registro",
+        "SENSORS": "Sensores",
+        "PEDOMETER": "Podómetro",
+        "LOCATION": "Ubicación",
+        "GYROSCOPE": "Giroscopio",
+        "BETA": "beta",
+        "CUSTOM_CLASSES": "Clases de datos personalizadas",
+        "UPDATE_BUTTON": "ACTUALIZAR"
+    },
+    "JOURNAL": {
+        "HEADER": "diario",
+        "ACTIVITY": "Actividad"
+    },
+    "FEED": {
+        "HEADER": "Feed",
+        "MSG": "Próximamente"
+    }
+}

@@ -1,0 +1,149 @@
+{
+    "DIALOG": {
+        "OK": "OK",
+        "CANCEL": "取消",
+        "CLEAR": "清除",
+        "CONFIRM": "確認"
+    },
+    "LOADING": {
+        "INITIALIZE": "軟體初始化"
+    },
+    "LOGIN": {
+        "HEADER": "登入",
+        "BUTTON": "登入",
+        "CREATE_KEY_BUTTON": "或建立你的金鑰"
+    },
+    "TABS": {
+        "HOME": "主頁",
+        "RECORD": "紀錄",
+        "JOURNAL": "日誌",
+        "FEED": "動態"
+    },
+    "SIDE_MENU": {
+        "HEADER": "設定",
+        "PROFILE": "基本資料",
+        "PRIVACY": "隱私",
+        "ABOUT": "關於",
+        "HELP": "幫助",
+        "VERSION": "版本",
+        "SIGN_OUT_BUTTON": "登出"
+    },
+    "PROFILE": {
+        "HEADER": "基本資料",
+        "CHANGE_PROFILE_PICTURE_BUTTON": "更新照片",
+        "FIRST_NAME": "名字",
+        "LAST_NAME": "姓氏",
+        "EMAIL": "電子郵件",
+        "BIRTHDAY": "生日",
+        "GENDER": "性別",
+        "NATIONALITY": "國籍",
+        "CITY": "城市",
+        "UPDATE_BUTTON": "更新",
+        "PREFER_NOT_TO_SHOW": "不顯示",
+        "MALE": "男性",
+        "FEMALE": "女性",
+        "NONBINARY": "非二元性",
+        "LANGUAGE": "語言"
+    },
+    "PRIVACY": {
+        "HEADER": "建構中",
+        "BACK_BUTTON": "返回主頁"
+    },
+    "ABOUT": {
+        "HEADER": "關於"
+    },
+    "HELP": {
+        "HEADER": "Lifebox - Take Back Control",
+        "TOUR_P1_TITLE": "Let your data go",
+        "TOUR_P1_DESC": "Let your data work for you",
+        "TOUR_P2_TITLE": "Monetization",
+        "TOUR_P2_DESC": "Invest with your personal data",
+        "TOUR_P3_TITLE": "Full Control",
+        "TOUR_P3_DESC": "Control and own your personal data",
+        "TOUR_P4_TITLE": "Transparency",
+        "TOUR_P4_DESC": "Approve who can license your data",
+        "TOUR_P5_TITLE": "Take Back Control",
+        "TOUR_P5_DESC": "Data is here, let us help you understand what it says",
+        "CONTINUE": "繼續"
+    },
+    "HOME": {
+        "HEADER": "主頁",
+        "TITLE": "日常活動"
+    },
+    "VISUALIZATION": {
+        "WEEK_DAYS": {
+            "SUN": "星期日",
+            "MON": "星期一",
+            "TUE": "星期二",
+            "WED": "星期三",
+            "THU": "星期四",
+            "FRI": "星期五",
+            "SAT": "星期六"
+        },
+        "SHARE_BUTTON": "與朋友分享",
+        "BAR_CHART": {
+            "HEADER": "",
+            "IN_LAST_7_DAYS": "過去一周",
+            "TODAY": "今天",
+            "AVERAGE": "平均值",
+            "MAX": "最大值",
+            "MIN": "最小值"
+        },
+        "SCATTER_PLOT": {
+            "HEADER": "視覺化",
+            "DATA_OF_PAST": "歷史資料"
+        }
+    },
+    "DATA_REPORT": {
+        "NOT_AVAILABLE": "N/A",
+        "TEMPERATURE": "溫度",
+        "AQ": "Air",
+        "AQI": "空氣品質",
+        "AQI_STATUS": {
+            "GOOD": "良好",
+            "MODERATE": "普通",
+            "UNHEALTHY": "不健康",
+            "VERY_UNHEALTHY": "非常不健康",
+            "HAZARDOUS": "危害",
+            "UNKNOWN": "未知"
+        },
+        "HUMIDITY": "濕度",
+        "WOKE_UP_TIME": "起床時間",
+        "SLEEPING_TIME": "睡眠時間",
+        "HRS": "小時",
+        "STEPS": "步數",
+        "INDOOR": "室內",
+        "OUTDOOR": "戶外",
+        "ADD_CUSTOM_CLASS_BUTTON": "新增數據",
+        "SHARE_BUTTON": "與朋友分享"
+    },
+    "ADD_DATA_CLASS": {
+        "HEADER": "新增數據",
+        "NAME": "名稱",
+        "EXPECTED_MIN": "預期最小值",
+        "EXPECTED_MAX": "預期最大值",
+        "INTERVAL": "間隔",
+        "UNIT": "單位",
+        "CALORIES": "卡路里",
+        "KCAL": "千卡",
+        "DONE_BUTTON": "新增"
+    },
+    "RECORD": {
+        "HEADER": "紀錄中心",
+        "SENSORS": "感應器",
+        "PEDOMETER": "計步器",
+        "LOCATION": "位置",
+        "GYROSCOPE": "陀螺儀",
+        "BETA": "beta",
+        "CUSTOM_CLASSES": "自訂數據",
+        "UPDATE_BUTTON": "更新"
+    },
+    "JOURNAL": {
+        "HEADER": "日誌",
+        "ACTIVITY": "活動"
+    },
+    "FEED": {
+        "HEADER": "動態",
+        "MSG": "敬請期待"
+    }
+}

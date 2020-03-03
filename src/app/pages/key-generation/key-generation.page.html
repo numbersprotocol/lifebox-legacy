@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Key Generation</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form [formGroup]="signUpForm" (submit)="generateKey()">
+    <ion-list>
+      <ng-container *ngFor="let control of formControls">
+        <ion-item>
+          <ion-label>{{ control.title }}</ion-label>
+          <ion-input [formControlName]="control.name" [placeholder]="control.placeholder" [type]="control.type"
+            [autocapitalize]="control.autoCapitalize" [autocomplete]="control.autoComplete"
+            [clearInput]="control.clearInput"></ion-input>
+        </ion-item>
+        <ng-container *ngFor="let validation of control.validationMessages">
+          <div class="validation-message"
+            *ngIf="signUpForm.get(control.name).hasError(validation.type) && (signUpForm.get(control.name).dirty || signUpForm.get(control.name).touched)">
+            <ion-icon name="information-circle-outline"></ion-icon>
+            <span>{{ validation.message }}</span>
+          </div>
+        </ng-container>
+      </ng-container>
+    </ion-list>
+    <ion-button type="submit" [disabled]="signUpForm.invalid || isGenerating" color="light" expand="block">
+      <span *ngIf="!isGenerating">Generate Key</span>
+      <ion-spinner *ngIf="isGenerating" color="dark"></ion-spinner>
+    </ion-button>
+  </form>
+</ion-content>
