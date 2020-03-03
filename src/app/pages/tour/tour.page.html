@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lifebox - Take Back Control</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="tutorial-page">
+  <ion-slides pager="true">
+    <ion-slide *ngFor="let slide of slides">
+      <!--
+        XXX: this is a workaround to put the elements inside ion-slide
+        vertically by wrapping everything into a <div>.
+      -->
+      <div>
+        <ion-toolbar>
+          <ion-buttons slot="end">
+            <ion-button color="primary" routerDirection="root" routerLink="/login">Skip</ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+        <h2 [innerHTML]="slide.title" class="slide-title"></h2>
+        <p [innerHTML]="slide.description"></p>
+        <img [src]="slide.image" class="slide-image" />
+      </div>
+    </ion-slide>
+    <ion-slide>
+      <!--
+        XXX: this is a workaround to put the elements inside ion-slide
+        vertically by wrapping everything into a <div>.
+      -->
+      <div>
+        <h2 [innerHTML]="ending.title" class="slide-title"></h2>
+        <p [innerHTML]="ending.description"></p>
+        <!--
+          <img [src]="ending.image" class="slide-image"/>
+        -->
+        <br><br><br><br><br>
+        <ion-button size="large" fill="clear" slot="end" color="primary" routerDirection="root" routerLink="/login">
+          Continue
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-button>
+      </div>
+    </ion-slide>
+  </ion-slides>
+</ion-content>

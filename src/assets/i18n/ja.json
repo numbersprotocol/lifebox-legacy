@@ -1,0 +1,149 @@
+{
+    "DIALOG": {
+        "OK": "OK",
+        "CANCEL": "キャンセル",
+        "CLEAR": "清除",
+        "CONFIRM": "確認"
+    },
+    "LOADING": {
+        "INITIALIZE": "アプリの初期化"
+    },
+    "LOGIN": {
+        "HEADER": "ログイン",
+        "BUTTON": "ログイン",
+        "CREATE_KEY_BUTTON": "Or create your unique key"
+    },
+    "TABS": {
+        "HOME": "主ページ",
+        "RECORD": "記録",
+        "JOURNAL": "日誌",
+        "FEED": "Feed"
+    },
+    "SIDE_MENU": {
+        "HEADER": "セッティング",
+        "PROFILE": "基本情報",
+        "PRIVACY": "プライバシー",
+        "ABOUT": "について",
+        "HELP": "ヘルプ",
+        "VERSION": "バージョン",
+        "SIGN_OUT_BUTTON": "ログアウト"
+    },
+    "PROFILE": {
+        "HEADER": "基本情報",
+        "CHANGE_PROFILE_PICTURE_BUTTON": "写真を更新",
+        "FIRST_NAME": "お名前",
+        "LAST_NAME": "姓",
+        "EMAIL": "メール",
+        "BIRTHDAY": "誕生日",
+        "GENDER": "性別",
+        "NATIONALITY": "国籍",
+        "CITY": "市区町村",
+        "UPDATE_BUTTON": "更新する",
+        "PREFER_NOT_TO_SHOW": "表示されない",
+        "MALE": "男性",
+        "FEMALE": "雌",
+        "NONBINARY": "NON-BINARY",
+        "LANGUAGE": "Language"
+    },
+    "PRIVACY": {
+        "HEADER": "建設中",
+        "BACK_BUTTON": "ホームページに戻る"
+    },
+    "ABOUT": {
+        "HEADER": "について"
+    },
+    "HELP": {
+        "HEADER": "Lifebox - Take Back Control",
+        "TOUR_P1_TITLE": "Let your data go",
+        "TOUR_P1_DESC": "Let your data work for you",
+        "TOUR_P2_TITLE": "Monetization",
+        "TOUR_P2_DESC": "Invest with your personal data",
+        "TOUR_P3_TITLE": "Full Control",
+        "TOUR_P3_DESC": "Control and own your personal data",
+        "TOUR_P4_TITLE": "Transparency",
+        "TOUR_P4_DESC": "Approve who can license your data",
+        "TOUR_P5_TITLE": "Take Back Control",
+        "TOUR_P5_DESC": "Data is here, let us help you understand what it says",
+        "CONTINUE": "CONTINUE"
+    },
+    "HOME": {
+        "HEADER": "主ページ",
+        "TITLE": "毎日の活動"
+    },
+    "VISUALIZATION": {
+        "WEEK_DAYS": {
+            "SUN": "日曜日",
+            "MON": "月曜日",
+            "TUE": "火曜日",
+            "WED": "水曜日",
+            "THU": "木曜日",
+            "FRI": "金曜日",
+            "SAT": "土曜日"
+        },
+        "SHARE_BUTTON": "友達と共有する",
+        "BAR_CHART": {
+            "HEADER": "",
+            "IN_LAST_7_DAYS": "先週",
+            "TODAY": "きょう",
+            "AVERAGE": "平均",
+            "MAX": "最大",
+            "MIN": "最小"
+        },
+        "SCATTER_PLOT": {
+            "HEADER": "visualization",
+            "DATA_OF_PAST": "履歴データ"
+        }
+    },
+    "DATA_REPORT": {
+        "NOT_AVAILABLE": "N/A",
+        "TEMPERATURE": "温度",
+        "AQ": "Air",
+        "AQI": "空気質",
+        "AQI_STATUS": {
+            "GOOD": "いいね",
+            "MODERATE": "共通",
+            "UNHEALTHY": "不健康",
+            "VERY_UNHEALTHY": "とても不健康",
+            "HAZARDOUS": "ハザード",
+            "UNKNOWN": "不明"
+        },
+        "HUMIDITY": "湿度",
+        "WOKE_UP_TIME": "起床時間",
+        "SLEEPING_TIME": "睡眠時間",
+        "HRS": "hrs",
+        "STEPS": "ステップ数",
+        "INDOOR": "屋内",
+        "OUTDOOR": "アウトドア",
+        "ADD_CUSTOM_CLASS_BUTTON": "新しいデータ",
+        "SHARE_BUTTON": "友達と共有する"
+    },
+    "ADD_DATA_CLASS": {
+        "HEADER": "新しいデータ",
+        "NAME": "プロジェクト名",
+        "EXPECTED_MIN": "予想される最小",
+        "EXPECTED_MAX": "予想される最大",
+        "INTERVAL": "間隔",
+        "UNIT": "単位",
+        "CALORIES": "カロリー",
+        "KCAL": "Kcal",
+        "DONE_BUTTON": "新しい"
+    },
+    "RECORD": {
+        "HEADER": "レコードセンター",
+        "SENSORS": "センサー",
+        "PEDOMETER": "歩数計",
+        "LOCATION": "場所",
+        "GYROSCOPE": "ジャイロスコープ",
+        "BETA": "beta",
+        "CUSTOM_CLASSES": "カスタムデータ",
+        "UPDATE_BUTTON": "更新する"
+    },
+    "JOURNAL": {
+        "HEADER": "ログ",
+        "ACTIVITY": "アクティビティ"
+    },
+    "FEED": {
+        "HEADER": "Feed",
+        "MSG": "Coming Soon"
+    }
+}

@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button routerDirection="forward" routerLink="/journal-scatterchart" fill="solid">
+        <ion-icon name="analytics" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title [textContent]="text.header"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list id="journal-list12">
+    <ion-item-sliding *ngFor="let reportDate of reportDates">
+      <ion-item (click)="goToJournalDailyReport(reportDate)">
+        {{ reportDate }}
+        <ion-icon name="stats" slot="end"></ion-icon>
+      </ion-item>
+      <ion-item-options side="start">
+        <ion-button color="light">Delete</ion-button>
+        <ion-button color="light">Visualize</ion-button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-content>

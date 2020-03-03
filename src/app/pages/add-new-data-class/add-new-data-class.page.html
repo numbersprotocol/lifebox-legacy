@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title [textContent]="text.header"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- fake chart -->
+  <img src="assets/img/XRKHPo6ESi2u7KjGNkvt_sample.png"
+    style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+
+  <form [formGroup]="customClassForm" (submit)="addNewClass()">
+    <ng-container *ngFor="let control of formControls">
+      <ion-item>
+        <ion-label>{{ control.title }}</ion-label>
+        <ion-input [formControlName]="control.name" [placeholder]="control.placeholder" [type]="control.type"
+          [autocapitalize]="control.autoCapitalize" [autocomplete]="control.autoComplete"
+          [clearInput]="control.clearInput"></ion-input>
+      </ion-item>
+      <ng-container *ngFor="let validation of control.validationMessages">
+        <div class="validation-message"
+          *ngIf="customClassForm.get(control.name).hasError(validation.type) && (customClassForm.get(control.name).dirty || customClassForm.get(control.name).touched)">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <span>{{ validation.message }}</span>
+        </div>
+      </ng-container>
+    </ng-container>
+    <div class="validation-message"
+      *ngIf="customClassForm.hasError('range') && (customClassForm.get('max').dirty || customClassForm.get('min').dirty || customClassForm.get('max').touched || customClassForm.get('min').touched)">
+      <ion-icon name="information-circle-outline"></ion-icon>
+      <span>Expected max should be greater than expected min.</span>
+    </div>
+    <ion-button type="submit" [disabled]="customClassForm.invalid" color="light" expand="block" [textContent]="text.doneButton">
+    </ion-button>
+  </form>
+</ion-content>

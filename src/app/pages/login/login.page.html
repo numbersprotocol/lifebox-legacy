@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title [textContent]="text.header"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div style="height: 200px"></div>
+  <ion-button (click)="login()" color="light" expand="block" [textContent]="text.button">
+  </ion-button>
+  <ion-button *ngIf="!keyExists" fill="clear" color="dark" expand="block" routerDirection="forward"
+    routerLink="/key-generation" [textContent]="text.createKeyButton">
+  </ion-button>
+</ion-content>

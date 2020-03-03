@@ -1,7 +1,7 @@
 {
-  "name": "numbers-creator",
+  "name": "lifebox-mobile-client",
   "integrations": {
     "cordova": {}
   },
-  "type": "ionic-angular"
+  "type": "angular"
 }
