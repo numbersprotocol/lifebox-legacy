@@ -1,0 +1,73 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title [textContent]="text.header"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <img [src]="imgUrl" class="avatar" />
+  <ion-button color="light" expand="block" (click)="updatePicture()" [textContent]="text.changeProfilePicture">
+  </ion-button>
+  <ion-item>
+      <ion-label [textContent]="text.language"></ion-label>
+      <ion-select [(ngModel)]="languageSelection" (ionChange)="changeLanguageSelection()">
+         <ion-select-option value="en" selected>English</ion-select-option>
+         <ion-select-option value="ja">日本語</ion-select-option>
+         <ion-select-option value="es">Español</ion-select-option>
+         <ion-select-option value="zh-tw">繁體中文</ion-select-option>
+      </ion-select>
+    </ion-item>
+  <form [formGroup]="profileForm" (submit)="updateProfile()">
+    <ion-list>
+      <div formGroupName="user">
+        <ng-container *ngFor="let control of formControls">
+          <ion-item>
+            <ion-label [textContent]="control.title"></ion-label>
+            <ion-input [formControlName]="control.name" [placeholder]="control.placeholder" [type]="control.type"
+              [autocapitalize]="control.autoCapitalize" [autocomplete]="control.autoComplete"
+              [clearInput]="control.clearInput" slot="end"></ion-input>
+          </ion-item>
+          <ng-container *ngFor="let validation of control.validationMessages">
+            <div class="validation-message"
+              *ngIf="profileForm.get('user').get(control.name).hasError(validation.type) && (profileForm.get('user').get(control.name).dirty || profileForm.get('user').get(control.name).touched)">
+              <ion-icon name="information-circle-outline"></ion-icon>
+              <span [textContent]="validation.message"></span>
+            </div>
+          </ng-container>
+        </ng-container>
+      </div>
+      <ion-item>
+        <ion-label [textContent]="text.birthday"></ion-label>
+        <ion-datetime formControlName="birthday" displayFormat="YYYY-MM-DD" pickerFormat="YYYY-MM-DD"
+          [pickerOptions]="customOptions"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label [textContent]="text.gender"></ion-label>
+        <ion-select formControlName="gender" slot="end">
+          <ion-select-option value="" [textContent]="text.preferNotToShow"></ion-select-option>
+          <ion-select-option *ngFor="let g of genderSpec" [value]="g.value">
+            {{ g.display_name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label [textContent]="text.nationality"></ion-label>
+        <ion-select formControlName="nationality" slot="end">
+          <ion-select-option value="" [textContent]="text.preferNotToShow"></ion-select-option>
+          <ion-select-option *ngFor="let n of nationalitySpec" [value]="n.value">
+            {{ n.display_name }}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label [textContent]="text.city"></ion-label>
+        <ion-input type="text" formControlName="city" slot="end"></ion-input>
+      </ion-item>
+      <ion-button type="submit" [disabled]="profileForm.invalid" color="light" expand="block" [textContent]="text.updateButton">
+      </ion-button>
+    </ion-list>
+  </form>
+</ion-content>

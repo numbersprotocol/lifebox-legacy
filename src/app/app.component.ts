@@ -1,105 +1,105 @@
-import { Component, ViewChild } from '@angular/core';
-import { Platform, Nav } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { Component } from '@angular/core';
+
+import { Platform, NavController } from '@ionic/angular';
+
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { AppVersion } from '@ionic-native/app-version/ngx';
 
-import ZeroClientProvier from 'web3-provider-engine';
+import ZeroClientProvider from 'web3-provider-engine';
 
-import { AboutPage } from '../pages/about/about';
-import { ProfilePage } from '../pages/profile/profile';
-import { LoginPage } from '../pages/login/login';
-import { WorkingInProgressPage } from '../pages/working-in-progress/working-in-progress';
-import { TourPage } from '../pages/tour/tour';
-
-import { ConfigService } from '../providers/config/config.service';
-import { SensorService } from '../providers/sensor/sensor.service';
-
-import { DataService } from '../providers/data/data.service';
+import { environment } from 'src/environments/environment';
+import { ConfigService } from './services/config/config.service';
+import { Subscription } from 'rxjs';
+import { LanguageService } from './services/language/language.service';
+import { LoginService } from './services/login/login.service';
 
 @Component({
-  templateUrl: 'app.html'
+  selector: 'app-root',
+  templateUrl: 'app.component.html'
 })
-export class MyApp {
-  version:string = '';
+export class AppComponent {
+  version = '';
+  web3Provider = new ZeroClientProvider();
+  menuItems = [
+    { text: 'Profile', link: '/profile' },
+    // { text: 'Privacy', link: '/work-in-progress' },
+    // { text: 'About', link: '/about' },
+    { text: 'Help', link: '/tour' }
+  ];
+  text = {
+    header: '',
+    version: '',
+    signOutButton: '',
+  };
+  subscriptions = new Subscription();
 
-  @ViewChild(Nav) navCtrl: Nav;
-    /* NOTE: Use Tour as default page
-     *
-     *   We might change main page (TabsControllerPage) as default
-     *   after the app is mature.
-     */
-    //rootPage:any = TabsControllerPage;
-    //rootPage: any = TourPage;
+  constructor(
+    private platform: Platform,
+    private navCtrl: NavController,
+    private splashScreen: SplashScreen,
+    private appVersion: AppVersion,
+    private configService: ConfigService,
+    private language: LanguageService,
+    public loginService: LoginService,
+  ) {
+    this.subscribeText();
+    this.initializeApp();
+  }
 
-  web3Provider: ZeroClientProvier;
-  constructor(configService: ConfigService,
-              dataService: DataService,
-              platform: Platform,
-              sensorService: SensorService,
-              statusBar: StatusBar,
-              splashScreen: SplashScreen,
-              private appVersion: AppVersion
-              ) {
-    this.appVersion.getVersionNumber()
-      .then(res => {
-        this.version = res;
-        console.debug('app version');
-        console.debug(this.version);
-      })
-      .catch(err => {
-        console.warn('Failed to get app version');
-      });
-
-    platform.ready().then(async() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      //await this.initOrm(platform);
-      await dataService.init();
-      await this.setDefaultRootPage(configService);
-      sensorService.configureLocationWatcher();
-      splashScreen.hide();
-      statusBar.styleDefault();
-      this.web3Provider = new ZeroClientProvier();
+  initializeApp() {
+    this.platform.ready().then(async () => {
+      this.getAppVersion().then(version => this.version = version);
+      this.setupDevToolsPage();
+      await this.language.setLanguage(this.configService.getLanguage());
+      await this.redirectInitPage().then(() => this.splashScreen.hide());
     });
   }
 
-  async setDefaultRootPage(configService: ConfigService) {
-    return new Promise(async(resolve, reject) => {
-      if (await configService.isInitialized()) {
-        this.navCtrl.setRoot(LoginPage);
-        resolve(LoginPage);
-      }
-      else {
-        await configService.createConfig();
-        this.navCtrl.setRoot(TourPage);
-        resolve(TourPage);
-      }
-    })
+  async getAppVersion() {
+    return this.appVersion.getVersionNumber();
   }
 
-  goToAbout(params){
-    if (!params) params = {};
-    this.navCtrl.push(AboutPage);
+  async redirectInitPage() {
+    if (!await this.configService.configExists()) {
+      await this.configService.createConfig();
+      return this.navCtrl.navigateRoot(['/tour'], {skipLocationChange: true});
+    }
+    await this.configService.loadConfig();
+    if (await this.loginService.quickLogin()) {
+      return this.navCtrl.navigateRoot(['/tabs'], {replaceUrl: true});
+    }
+    return this.navCtrl.navigateRoot(['/login'], {skipLocationChange: true});
   }
-  goToWorkInProgress(params){
-    if (!params) params = {};
-    this.navCtrl.push(WorkingInProgressPage);
-  }
-  goToProfile(params){
-    if (!params) params = {};
-    this.navCtrl.push(ProfilePage);
-  }
-  goToHelp(params){
-    if (!params) params = {};
-    this.navCtrl.push(TourPage);
-  }
-  goToLogin(params){
-    if (!params) params = {};
-    localStorage.removeItem('session-uid');
-    localStorage.removeItem('web3Token');
-    this.navCtrl.setRoot(LoginPage).then(() => {
-      this.navCtrl.popToRoot();
+
+  setupDevToolsPage() {
+    if (environment.production === true) {
+      return;
+    }
+    this.menuItems.push({
+      text: 'Dev Tools',
+      link: '/dev-tools',
     });
+  }
+
+  signOut() {
+    this.loginService.signOut();
+    this.navCtrl.navigateRoot(['/login'], {skipLocationChange: true});
+  }
+
+  OnDestroy() {
+    this.subscriptions.unsubscribe();
+  }
+
+  private subscribeText() {
+    this.subscriptions.add(this.language.text.sideMenu.header.get()
+    .subscribe(res => this.text.header = res));
+    this.subscriptions.add(this.language.text.sideMenu.profile.get()
+    .subscribe(res => this.menuItems[0].text = res));
+    this.subscriptions.add(this.language.text.sideMenu.help.get()
+    .subscribe(res => this.menuItems[1].text = res));
+    this.subscriptions.add(this.language.text.sideMenu.version.get()
+    .subscribe(res => this.text.version = res));
+    this.subscriptions.add(this.language.text.sideMenu.signOutButton.get()
+    .subscribe(res => this.text.signOutButton = res));
   }
 }

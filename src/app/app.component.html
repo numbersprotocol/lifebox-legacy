@@ -1,0 +1,26 @@
+<ion-app>
+  <ion-split-pane>
+    <ion-menu type="overlay" [disabled]="!loginService.session.loggedIn">
+      <ion-header>
+        <ion-toolbar>
+          <ion-title [textContent]="text.header"></ion-title>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false">
+            <ion-item *ngFor="let item of menuItems" routerDirection="forward" [routerLink]="item.link">
+              <ion-label>{{ item.text }}</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>{{ text.version }} {{ this.version }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ion-list>
+        <ion-button color="light" expand="block" (click)="signOut()" [textContent]="text.signOutButton">
+        </ion-button>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

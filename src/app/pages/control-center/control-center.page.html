@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="false" slot="end">
+      <ion-button fill="solid">
+        <ion-icon name="create" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title [textContent]="text.header"></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form (submit)="update()">
+    <ion-list>
+      <ion-list-header>
+        <ion-label [textContent]="text.sensors"></ion-label>
+      </ion-list-header>
+      <ion-item>
+        <ion-label>{{ text.pedometer }} ({{ text.beta }})</ion-label>
+        <ion-toggle [(ngModel)]="pedometerEnabled" name="pedometerEnabled" (ionChange)="handlePedometerToggleChange()"
+          checked=false color="dark"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label [textContent]="text.location"></ion-label>
+        <ion-toggle [(ngModel)]="locationEnabled" name="locationEnabled" (ionChange)="handleLocationToggleChange()"
+          checked="false" color="dark"></ion-toggle>
+      </ion-item>
+      <ion-item>
+        <ion-label>{{ text.gyroscope }} ({{ text.beta }})</ion-label>
+        <ion-toggle [(ngModel)]="gyroscopeEnabled" name="gyroscopeEnabled" (ionChange)="handleGyroscopeToggleChange()"
+          checked="false" color="dark"></ion-toggle>
+      </ion-item>
+    </ion-list>
+    <ion-list *ngIf="customClasses && customClasses.length > 0">
+      <ion-list-header>
+        <ion-label [textContent]="text.customClass"></ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let class of customClasses">
+        <ion-icon [name]="class.icon" slot="start"></ion-icon>
+        <ion-label slot="start">  {{ class.name }}  </ion-label>
+        <ion-input [(ngModel)]="class.records[0].value" type="number" [ngModelOptions]="{standalone: true}"
+          name="class_value"></ion-input>
+        <ion-label *ngIf="class.unit" slot="end">  {{ class.unit }}  </ion-label>
+        <ion-icon (click)="delete(class)" name="trash" slot="end"></ion-icon>
+      </ion-item>
+    </ion-list>
+    <ion-button type="submit" color="light" expand="block" [textContent]="text.updateButton">
+    </ion-button>
+  </form>
+</ion-content>

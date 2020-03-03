@@ -1,0 +1,66 @@
+<ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)">
+  <ion-refresher-content></ion-refresher-content>
+</ion-refresher>
+<div id="data-report-title" class="ion-text-center" [textContent]="text.title"></div>
+<ion-list id="data-report-list">
+  <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
+    <ion-icon name="thermometer" slot="start"></ion-icon>
+    <ion-label>{{ text.temperature }}: {{ report.weather.weatherTempCelsius }}°C</ion-label>
+    <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-aqi" (click)="goToAQI()">
+    <ion-icon name="cloud" slot="start"></ion-icon>
+    {{ text.AQ }}: {{ report.airQuality.airQualityIndex }} {{ text.AQI}} {{ report.airQuality.airQualityStatus }}
+    <ion-note slot="end">{{ report.airQuality.airQualityIndexDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-humidity" (click)="goToHumidity()">
+    <ion-icon name="water" slot="start"></ion-icon>
+    {{ text.humidity }}: {{ report.weather.weatherHumidity }}%
+    <ion-note slot="end">{{ report.weather.weatherHumidityDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-wokeup" (click)="goToWokeupTime()">
+    <ion-icon name="alarm" slot="start"></ion-icon>
+    {{ text.wokeUpTime }} {{ report.sleepActivity.wokeupTime }}
+    <ion-note slot="end">{{ report.sleepActivity.wokeupTimeDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-sleep" (click)="goToSleepingTime()">
+    <ion-icon name="moon" slot="start"></ion-icon>
+    {{ text.sleepingTime }}: {{ report.sleepActivity.sleepTime }} {{ text.hrs }}
+    <ion-note slot="end">{{ report.sleepActivity.sleepTimeDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-steps" (click)="goToSteps()">
+    <ion-icon name="walk" slot="start"></ion-icon>
+    {{ report.steps.steps }} {{ text.steps }}
+    <ion-note slot="end">{{ report.steps.stepsDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-indoor" (click)="goToSevenDaysIndoor()">
+    <ion-icon name="pin" slot="start"></ion-icon>
+    {{ report.iodoor.indoorPercent }}% {{ text.indoor }}
+    <ion-note slot="end">{{ report.iodoor.indoorPercentDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-outdoor" (click)="goToSevenDaysOutdoor()">
+    <ion-icon name="pin" slot="start"></ion-icon>
+    {{ report.iodoor.outdoorPercent }}% {{ text.outdoor }}
+    <ion-note slot="end">{{ report.iodoor.outdoorPercentDiff }}</ion-note>
+  </ion-item>
+</ion-list>
+<ion-list id="custom-classes">
+  <ion-item-sliding *ngFor="let class of report.customClass.classes">
+    <ion-item (click)="goToCustomClass(class.id, class.name, class.unit, class.min, class.max)">
+      <ion-icon name={{class.icon}} slot="start"></ion-icon>
+      {{class.name}}: {{class.records[0].value !== null ? class.records[0].value.toFixed(1) : '- -' }} {{class.unit}}
+    </ion-item>
+    <ion-item-options side="end">
+      <ion-item-option color="primary" (click)="increaseCustomClassRecord(class)">
+        +
+      </ion-item-option>
+      <ion-item-option color="primary" (click)="decreaseCustomClassRecord(class)">
+        -
+      </ion-item-option>
+    </ion-item-options>
+  </ion-item-sliding>
+</ion-list>
+<ng-content select="[add-data-class]"></ng-content>
+<ion-button id="data-report-share-day" color="light" expand="block" [textContent]="text.shareButton">
+  <ion-icon name="share" slot="start"></ion-icon>
+</ion-button>

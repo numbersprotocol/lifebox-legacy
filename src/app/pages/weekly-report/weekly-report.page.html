@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button fill="solid">
+        <ion-icon name="analytics" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Weekly Report</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <!-- fake chart -->
+  <img src="assets/img/ArVJbRfwSre8w3scm7q3_.PNG"
+    style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" />
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Temp</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>RH</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Air Quality</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Steps</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Sleeping Time</ion-label>
+      <ion-checkbox slot="end"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-button routerDirection="back" routerLink="/tabs/journal" color="dark" expand="block">
+    Back To My Journal
+  </ion-button>
+</ion-content>
