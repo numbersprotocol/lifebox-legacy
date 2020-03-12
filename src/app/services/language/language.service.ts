@@ -21,7 +21,7 @@ export class LanguageService {
   }
 
   getDefaultLanguage() {
-    const defaultLanguage = 'en';
+    const defaultLanguage = 'zh-tw';
     this.translate.setDefaultLang(defaultLanguage);
     return defaultLanguage;
   }
