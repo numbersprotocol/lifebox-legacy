@@ -2,7 +2,28 @@
   <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
 <div id="data-report-title" class="ion-text-center" [textContent]="text.title"></div>
+<ion-list id="data-report-list-top">
+  <!-- start -->
+  <!-- a. Default 中文
+  b. Default 包含血壓, 血糖, 體重, 尿量的紀錄欄位
+  c. 病患須手動紀錄
+  d. 儲存紀錄時 snapshot 時間地點
+  e. 可輸入家中地址，紀錄地點如果在家裡會有額外標示 (顏色不同?)
+  f. #b 的項目調整到最上方，自動紀錄的項目往下調 (edited) -->
+  <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
+    <ion-icon name="settings" slot="start"></ion-icon>
+    <ion-label>{{" text.temperature" }}: {{ 'report.weather.weatherTempCelsius '}}°C</ion-label>
+    <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
+    <ion-icon name="calendar" slot="start"></ion-icon>
+    <ion-label> Ionic 4 Backgorund Geolocation </ion-label>
+    <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
+  </ion-item>
+  <!-- end -->
+</ion-list>
 <ion-list id="data-report-list">
+
   <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
     <ion-icon name="thermometer" slot="start"></ion-icon>
     <ion-label>{{ text.temperature }}: {{ report.weather.weatherTempCelsius }}°C</ion-label>
