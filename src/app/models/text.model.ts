@@ -86,6 +86,13 @@ export class Text {
     home: {
         header: DynamicString;
         title: DynamicString;
+  
+            blood: DynamicString;
+            body: DynamicString;
+            event: DynamicString;
+            config: DynamicString;
+   
+
     };
     visualization: {
         weekDays: {
@@ -235,6 +242,13 @@ export class Text {
         this.home = {
             header: new DynamicString(),
             title: new DynamicString(),
+           
+                blood: new DynamicString(),
+                body: new DynamicString(),
+                event: new DynamicString(),
+                config: new DynamicString(),
+        
+
         };
         this.visualization = {
             weekDays: {

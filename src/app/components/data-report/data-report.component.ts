@@ -22,6 +22,10 @@ export class DataReportComponent implements OnInit {
   report: DailyReport;
   text = {
     title: '',
+    blood: '',
+    body: '',
+    event: '',
+    config: '',
     temperature: '',
     AQ: '',
     AQI: '',
@@ -33,6 +37,13 @@ export class DataReportComponent implements OnInit {
     indoor: '',
     outdoor: '',
     shareButton: '',
+    weight: '體重',
+    height: '身高',
+    urine: '尿量',
+    sugar: '血糖',
+    heartbeat: "心跳",
+    diastolic: "舒張壓",
+    systolic: "收縮壓",
   };
   subscriptions = new Subscription();
 
@@ -195,47 +206,57 @@ export class DataReportComponent implements OnInit {
 
   goToCustomClass(classID, className, classUnit, classMin, classMax) {
     this.dataService.getSingleCustomClassDataByDate(new Date(), 7, classID)
-    .then((res) => {
-      console.log('SingleCustomClassData', res);
-      this.navCtrl.navigateForward(['/custom-data-barchart'], {
-        queryParams: {
-          data: res[0].map(d => Math.round(d * 10) / 10),
-          class: `${className}`,
-          type: 'value',
-          unit: `${classUnit}`,
-          min: classMin,
-          max: classMax,
-          barColor: '#FF7773',
-          hollowArray: res[1]}
+      .then((res) => {
+        console.log('SingleCustomClassData', res);
+        this.navCtrl.navigateForward(['/custom-data-barchart'], {
+          queryParams: {
+            data: res[0].map(d => Math.round(d * 10) / 10),
+            class: `${className}`,
+            type: 'value',
+            unit: `${classUnit}`,
+            min: classMin,
+            max: classMax,
+            barColor: '#FF7773',
+            hollowArray: res[1]
+          }
+        });
       });
-    });
   }
 
   private subscribeText() {
     this.subscriptions.add(this.language.text.home.title.get()
-    .subscribe(res => this.text.title = res));
+      .subscribe(res => this.text.title = res));
+    this.subscriptions.add(this.language.text.home.blood.get()
+      .subscribe(res => this.text.blood = res));
+    this.subscriptions.add(this.language.text.home.body.get()
+      .subscribe(res => this.text.body = res));
+    this.subscriptions.add(this.language.text.home.event.get()
+      .subscribe(res => this.text.event = res));
+    this.subscriptions.add(this.language.text.home.config.get()
+      .subscribe(res => this.text.config = res));
+
     this.subscriptions.add(this.language.text.dataReport.temperature.get()
-    .subscribe(res => this.text.temperature = res));
+      .subscribe(res => this.text.temperature = res));
     this.subscriptions.add(this.language.text.dataReport.AQ.get()
-    .subscribe(res => this.text.AQ = res));
+      .subscribe(res => this.text.AQ = res));
     this.subscriptions.add(this.language.text.dataReport.AQI.get()
-    .subscribe(res => this.text.AQI = res));
+      .subscribe(res => this.text.AQI = res));
     this.subscriptions.add(this.language.text.dataReport.humidity.get()
-    .subscribe(res => this.text.humidity = res));
+      .subscribe(res => this.text.humidity = res));
     this.subscriptions.add(this.language.text.dataReport.wokeUpTime.get()
-    .subscribe(res => this.text.wokeUpTime = res));
+      .subscribe(res => this.text.wokeUpTime = res));
     this.subscriptions.add(this.language.text.dataReport.sleepingTime.get()
-    .subscribe(res => this.text.sleepingTime = res));
+      .subscribe(res => this.text.sleepingTime = res));
     this.subscriptions.add(this.language.text.dataReport.hrs.get()
-    .subscribe(res => this.text.hrs = res));
+      .subscribe(res => this.text.hrs = res));
     this.subscriptions.add(this.language.text.dataReport.steps.get()
-    .subscribe(res => this.text.steps = res));
+      .subscribe(res => this.text.steps = res));
     this.subscriptions.add(this.language.text.dataReport.indoor.get()
-    .subscribe(res => this.text.indoor = res));
+      .subscribe(res => this.text.indoor = res));
     this.subscriptions.add(this.language.text.dataReport.outdoor.get()
-    .subscribe(res => this.text.outdoor = res));
+      .subscribe(res => this.text.outdoor = res));
     this.subscriptions.add(this.language.text.dataReport.shareButton.get()
-    .subscribe(res => this.text.shareButton = res));
+      .subscribe(res => this.text.shareButton = res));
   }
 
 }

@@ -2,85 +2,125 @@
   <ion-refresher-content></ion-refresher-content>
 </ion-refresher>
 <div id="data-report-title" class="ion-text-center" [textContent]="text.title"></div>
-<ion-list id="data-report-list-top">
-  <!-- start -->
-  <!-- a. Default 中文
+<!-- a. Default 中文
   b. Default 包含血壓, 血糖, 體重, 尿量的紀錄欄位
   c. 病患須手動紀錄
   d. 儲存紀錄時 snapshot 時間地點
   e. 可輸入家中地址，紀錄地點如果在家裡會有額外標示 (顏色不同?)
   f. #b 的項目調整到最上方，自動紀錄的項目往下調 (edited) -->
+<ion-item-group>
+  <ion-item-divider>
+    <ion-label>{{text.blood}}</ion-label>
+  </ion-item-divider>
+  <ion-item id="data-report-list-item-temp-sub">
+    <ion-icon name="calendar" slot="start"></ion-icon>
+    <ion-label>{{text.systolic}}Systolic pressure:{{ report.weather.weatherTempCelsius }}mmHg</ion-label>
+    <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-temp-sub">
+    <ion-icon name="calendar" slot="start"></ion-icon>
+    <ion-label>{{text.diastolic}}Diastolic pressure:{{ report.weather.weatherTempCelsius }}mmHg</ion-label>
+    <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
+  </ion-item>
+  <ion-item id="data-report-list-item-temp-sub">
+    <ion-icon name="calendar" slot="start"></ion-icon>
+    <ion-label>{{text.heartbeat}}Heartbeat:{{ report.weather.weatherTempCelsius }}bpm</ion-label>
+    <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
+  </ion-item>
+</ion-item-group>
+<ion-item-group>
+  <ion-item-divider>
+    <ion-label [textContent]="text.body">{{text.body}}</ion-label>
+  </ion-item-divider>
   <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
-    <ion-icon name="settings" slot="start"></ion-icon>
-    <ion-label>{{" text.temperature" }}: {{ 'report.weather.weatherTempCelsius '}}°C</ion-label>
+    <ion-icon name="calendar" slot="start"></ion-icon>
+    <ion-label>{{text.weight}} weight:{{ report.weather.weatherTempCelsius }}/kg</ion-label>
     <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
   </ion-item>
   <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
     <ion-icon name="calendar" slot="start"></ion-icon>
-    <ion-label> Ionic 4 Backgorund Geolocation </ion-label>
+    <ion-label>{{text.height}}height :{{ report.weather.weatherTempCelsius }}/cm</ion-label>
     <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
   </ion-item>
-  <!-- end -->
-</ion-list>
-<ion-list id="data-report-list">
-
   <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
-    <ion-icon name="thermometer" slot="start"></ion-icon>
-    <ion-label>{{ text.temperature }}: {{ report.weather.weatherTempCelsius }}°C</ion-label>
+    <ion-icon name="calendar" slot="start"></ion-icon>
+    <ion-label> {{text.urine}}Urine output:{{ report.weather.weatherTempCelsius }}/cc</ion-label>
     <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
   </ion-item>
-  <ion-item id="data-report-list-item-aqi" (click)="goToAQI()">
-    <ion-icon name="cloud" slot="start"></ion-icon>
-    {{ text.AQ }}: {{ report.airQuality.airQualityIndex }} {{ text.AQI}} {{ report.airQuality.airQualityStatus }}
-    <ion-note slot="end">{{ report.airQuality.airQualityIndexDiff }}</ion-note>
+  <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
+    <ion-icon name="calendar" slot="start"></ion-icon>
+    <ion-label> {{text.sugar}}blood sugar : {{ report.weather.weatherTempCelsius }}mg/dL</ion-label>
+    <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
   </ion-item>
-  <ion-item id="data-report-list-item-humidity" (click)="goToHumidity()">
-    <ion-icon name="water" slot="start"></ion-icon>
-    {{ text.humidity }}: {{ report.weather.weatherHumidity }}%
-    <ion-note slot="end">{{ report.weather.weatherHumidityDiff }}</ion-note>
-  </ion-item>
-  <ion-item id="data-report-list-item-wokeup" (click)="goToWokeupTime()">
-    <ion-icon name="alarm" slot="start"></ion-icon>
-    {{ text.wokeUpTime }} {{ report.sleepActivity.wokeupTime }}
-    <ion-note slot="end">{{ report.sleepActivity.wokeupTimeDiff }}</ion-note>
-  </ion-item>
-  <ion-item id="data-report-list-item-sleep" (click)="goToSleepingTime()">
-    <ion-icon name="moon" slot="start"></ion-icon>
-    {{ text.sleepingTime }}: {{ report.sleepActivity.sleepTime }} {{ text.hrs }}
-    <ion-note slot="end">{{ report.sleepActivity.sleepTimeDiff }}</ion-note>
-  </ion-item>
-  <ion-item id="data-report-list-item-steps" (click)="goToSteps()">
-    <ion-icon name="walk" slot="start"></ion-icon>
-    {{ report.steps.steps }} {{ text.steps }}
-    <ion-note slot="end">{{ report.steps.stepsDiff }}</ion-note>
-  </ion-item>
-  <ion-item id="data-report-list-item-indoor" (click)="goToSevenDaysIndoor()">
-    <ion-icon name="pin" slot="start"></ion-icon>
-    {{ report.iodoor.indoorPercent }}% {{ text.indoor }}
-    <ion-note slot="end">{{ report.iodoor.indoorPercentDiff }}</ion-note>
-  </ion-item>
-  <ion-item id="data-report-list-item-outdoor" (click)="goToSevenDaysOutdoor()">
-    <ion-icon name="pin" slot="start"></ion-icon>
-    {{ report.iodoor.outdoorPercent }}% {{ text.outdoor }}
-    <ion-note slot="end">{{ report.iodoor.outdoorPercentDiff }}</ion-note>
-  </ion-item>
-</ion-list>
-<ion-list id="custom-classes">
-  <ion-item-sliding *ngFor="let class of report.customClass.classes">
-    <ion-item (click)="goToCustomClass(class.id, class.name, class.unit, class.min, class.max)">
-      <ion-icon name={{class.icon}} slot="start"></ion-icon>
-      {{class.name}}: {{class.records[0].value !== null ? class.records[0].value.toFixed(1) : '- -' }} {{class.unit}}
+</ion-item-group>
+<ion-item-group>
+  <ion-item-divider>
+    <ion-label>{{text.event}}</ion-label>
+  </ion-item-divider>
+  <ion-list id="data-report-list">
+    <ion-item id="data-report-list-item-temp" (click)="goToTemperature()">
+      <ion-icon name="thermometer" slot="start"></ion-icon>
+      <ion-label>{{ text.temperature }}: {{ report.weather.weatherTempCelsius }}°C</ion-label>
+      <ion-note slot="end">{{ report.weather.weatherTempCelsiusDiff }}</ion-note>
     </ion-item>
-    <ion-item-options side="end">
-      <ion-item-option color="primary" (click)="increaseCustomClassRecord(class)">
-        +
-      </ion-item-option>
-      <ion-item-option color="primary" (click)="decreaseCustomClassRecord(class)">
-        -
-      </ion-item-option>
-    </ion-item-options>
-  </ion-item-sliding>
-</ion-list>
+    <ion-item id="data-report-list-item-aqi" (click)="goToAQI()">
+      <ion-icon name="cloud" slot="start"></ion-icon>
+      {{ text.AQ }}: {{ report.airQuality.airQualityIndex }} {{ text.AQI}} {{ report.airQuality.airQualityStatus }}
+      <ion-note slot="end">{{ report.airQuality.airQualityIndexDiff }}</ion-note>
+    </ion-item>
+    <ion-item id="data-report-list-item-humidity" (click)="goToHumidity()">
+      <ion-icon name="water" slot="start"></ion-icon>
+      {{ text.humidity }}: {{ report.weather.weatherHumidity }}%
+      <ion-note slot="end">{{ report.weather.weatherHumidityDiff }}</ion-note>
+    </ion-item>
+    <ion-item id="data-report-list-item-wokeup" (click)="goToWokeupTime()">
+      <ion-icon name="alarm" slot="start"></ion-icon>
+      {{ text.wokeUpTime }} {{ report.sleepActivity.wokeupTime }}
+      <ion-note slot="end">{{ report.sleepActivity.wokeupTimeDiff }}</ion-note>
+    </ion-item>
+    <ion-item id="data-report-list-item-sleep" (click)="goToSleepingTime()">
+      <ion-icon name="moon" slot="start"></ion-icon>
+      {{ text.sleepingTime }}: {{ report.sleepActivity.sleepTime }} {{ text.hrs }}
+      <ion-note slot="end">{{ report.sleepActivity.sleepTimeDiff }}</ion-note>
+    </ion-item>
+    <ion-item id="data-report-list-item-steps" (click)="goToSteps()">
+      <ion-icon name="walk" slot="start"></ion-icon>
+      {{ report.steps.steps }} {{ text.steps }}
+      <ion-note slot="end">{{ report.steps.stepsDiff }}</ion-note>
+    </ion-item>
+    <ion-item id="data-report-list-item-indoor" (click)="goToSevenDaysIndoor()">
+      <ion-icon name="pin" slot="start"></ion-icon>
+      {{ report.iodoor.indoorPercent }}% {{ text.indoor }}
+      <ion-note slot="end">{{ report.iodoor.indoorPercentDiff }}</ion-note>
+    </ion-item>
+    <ion-item id="data-report-list-item-outdoor" (click)="goToSevenDaysOutdoor()">
+      <ion-icon name="pin" slot="start"></ion-icon>
+      {{ report.iodoor.outdoorPercent }}% {{ text.outdoor }}
+      <ion-note slot="end">{{ report.iodoor.outdoorPercentDiff }}</ion-note>
+    </ion-item>
+  </ion-list>
+</ion-item-group>
+<ion-item-group>
+  <ion-item-divider>
+    <ion-label>{{text.config}}</ion-label>
+  </ion-item-divider>
+  <ion-list id="custom-classes">
+    <ion-item-sliding *ngFor="let class of report.customClass.classes">
+      <ion-item (click)="goToCustomClass(class.id, class.name, class.unit, class.min, class.max)">
+        <ion-icon name={{class.icon}} slot="start"></ion-icon>
+        {{class.name}}: {{class.records[0].value !== null ? class.records[0].value.toFixed(1) : '- -' }} {{class.unit}}
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="primary" (click)="increaseCustomClassRecord(class)">
+          +
+        </ion-item-option>
+        <ion-item-option color="primary" (click)="decreaseCustomClassRecord(class)">
+          -
+        </ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+</ion-item-group>
 <ng-content select="[add-data-class]"></ng-content>
 <ion-button id="data-report-share-day" color="light" expand="block" [textContent]="text.shareButton">
   <ion-icon name="share" slot="start"></ion-icon>

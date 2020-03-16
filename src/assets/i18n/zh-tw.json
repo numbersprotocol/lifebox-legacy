@@ -68,7 +68,13 @@
     },
     "HOME": {
         "HEADER": "主頁",
-        "TITLE": "日常活動"
+        "TITLE": "日常活動",
+      
+            "BLOOD":"血壓",
+            "BODY":"身體紀錄",
+            "EVENT":"活動紀錄",
+            "CONFIG":"自定義紀錄"
+        
     },
     "VISUALIZATION": {
         "WEEK_DAYS": {

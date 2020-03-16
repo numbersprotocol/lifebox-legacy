@@ -87,6 +87,10 @@ export class LanguageService {
     this.text.help.continue.set(this.translate.instant('HELP.CONTINUE'));
     this.text.home.header.set(this.translate.instant('HOME.HEADER'));
     this.text.home.title.set(this.translate.instant('HOME.TITLE'));
+    this.text.home.blood.set(this.translate.instant('HOME.BLOOD'));
+    this.text.home.body.set(this.translate.instant('HOME.BODY'));
+    this.text.home.event.set(this.translate.instant('HOME.EVENT'));
+    this.text.home.config.set(this.translate.instant('HOME.CONFIG'));
     this.text.visualization.weekDays.sun.set(this.translate.instant('VISUALIZATION.WEEK_DAYS.SUN'));
     this.text.visualization.weekDays.mon.set(this.translate.instant('VISUALIZATION.WEEK_DAYS.MON'));
     this.text.visualization.weekDays.tue.set(this.translate.instant('VISUALIZATION.WEEK_DAYS.TUE'));

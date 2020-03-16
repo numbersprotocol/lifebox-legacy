@@ -68,7 +68,13 @@
     },
     "HOME": {
         "HEADER": "Home",
-        "TITLE": "My daily activity"
+        "TITLE": "My daily activity",
+    
+            "BLOOD":"BLOOD_DATA",
+            "BODY":"BODYE_DATA",
+            "EVENT":"EVENT_DATA",
+            "CONFIG":"CONFIG_DATA_REPORT"
+        
     },
     "VISUALIZATION": {
         "WEEK_DAYS": {
