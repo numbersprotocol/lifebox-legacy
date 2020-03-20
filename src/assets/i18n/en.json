@@ -134,6 +134,18 @@
         "KCAL": "kcal",
         "DONE_BUTTON": "DONE"
     },
+    "ADD_BODY_DATA_CLASS": {
+        "HEADER": "Add New Data Class",
+        "NAME": "Name",
+        "WEIGHT": "weight",
+        "HEIGHT": "height",
+        "URINE": "urine",
+        "SUGAR": "sugar",
+        "HEARBEAT": "heartbeat",
+        "DIASTOLIC": "diastolic",
+        "SYSTOLIC": "systolic",
+        "DONE_BUTTON": "DONE"
+    },
     "RECORD": {
         "HEADER": "Record Center",
         "SENSORS": "Sensors",

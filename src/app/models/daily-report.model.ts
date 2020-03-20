@@ -51,6 +51,7 @@ export class DailyReport {
     this.setDefaultSleepActivity();
     this.setDefaultSteps();
     this.setDefaultWeather();
+    this.setDefaultBlood();
   }
 
   setAirQuality(airQuality: AirQualityReport) {
@@ -124,6 +125,14 @@ export class DailyReport {
       weatherHumidityDiff: DISPLAY.NOT_AVAILABLE,
     };
   }
+  private setDefaultBlood() {
+    this.weather = {
+      weatherTempCelsius: DISPLAY.NO_DATA,
+      weatherTempCelsiusDiff: DISPLAY.NOT_AVAILABLE,
+      weatherHumidity: DISPLAY.NO_DATA,
+      weatherHumidityDiff: DISPLAY.NOT_AVAILABLE,
+    };
+  }
 }
 
 export interface AirQualityReport {
@@ -156,6 +165,7 @@ export interface WeatherReport {
   weatherHumidity: string;
   weatherHumidityDiff: string;
 }
+
 
 export interface CustomClassReport {
   classes: Array<CustomClassEntity>;

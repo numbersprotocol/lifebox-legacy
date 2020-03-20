@@ -86,12 +86,12 @@ export class Text {
     home: {
         header: DynamicString;
         title: DynamicString;
-  
-            blood: DynamicString;
-            body: DynamicString;
-            event: DynamicString;
-            config: DynamicString;
-   
+
+        blood: DynamicString;
+        body: DynamicString;
+        event: DynamicString;
+        config: DynamicString;
+
 
     };
     visualization: {
@@ -150,6 +150,18 @@ export class Text {
         unit: DynamicString;
         calories: DynamicString;
         kcal: DynamicString;
+        doneButton: DynamicString;
+    };
+    addBodyDataClass: {
+        header: DynamicString;
+        name: DynamicString;
+        weight: DynamicString;
+        height: DynamicString;
+        urine: DynamicString;
+        sugar: DynamicString;
+        heartbeat: DynamicString;
+        diastolic: DynamicString;
+        systolic: DynamicString;
         doneButton: DynamicString;
     };
     record: {
@@ -242,12 +254,12 @@ export class Text {
         this.home = {
             header: new DynamicString(),
             title: new DynamicString(),
-           
-                blood: new DynamicString(),
-                body: new DynamicString(),
-                event: new DynamicString(),
-                config: new DynamicString(),
-        
+
+            blood: new DynamicString(),
+            body: new DynamicString(),
+            event: new DynamicString(),
+            config: new DynamicString(),
+
 
         };
         this.visualization = {
@@ -307,6 +319,19 @@ export class Text {
             calories: new DynamicString(),
             kcal: new DynamicString(),
             doneButton: new DynamicString(),
+        };
+        this.addBodyDataClass = {
+            header: new DynamicString(),
+            name: new DynamicString(),
+            weight: new DynamicString(),
+            height: new DynamicString(),
+            urine: new DynamicString(),
+            sugar: new DynamicString(),
+            heartbeat: new DynamicString(),
+            diastolic: new DynamicString(),
+            systolic: new DynamicString(),
+            doneButton: new DynamicString(),
+
         };
         this.record = {
             header: new DynamicString(),

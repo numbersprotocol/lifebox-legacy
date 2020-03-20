@@ -135,6 +135,23 @@ export class LanguageService {
     this.text.addDataClass.calories.set(this.translate.instant('ADD_DATA_CLASS.CALORIES'));
     this.text.addDataClass.kcal.set(this.translate.instant('ADD_DATA_CLASS.KCAL'));
     this.text.addDataClass.doneButton.set(this.translate.instant('ADD_DATA_CLASS.DONE_BUTTON'));
+
+
+
+    this.text.addBodyDataClass.header.set(this.translate.instant('ADD_BODY_DATA_CLASS.HEADER'));
+    this.text.addBodyDataClass.name.set(this.translate.instant('ADD_BODY_DATA_CLASS.NAME'));
+
+
+    this.text.addBodyDataClass.weight.set(this.translate.instant('ADD_BODY_DATA_CLASS.WEIGHT'));
+    this.text.addBodyDataClass.height.set(this.translate.instant('ADD_BODY_DATA_CLASS.HEIGHT'));
+    this.text.addBodyDataClass.urine.set(this.translate.instant('ADD_BODY_DATA_CLASS.URINE'));
+    this.text.addBodyDataClass.sugar.set(this.translate.instant('ADD_BODY_DATA_CLASS.SUGAR'));
+    this.text.addBodyDataClass.heartbeat.set(this.translate.instant('ADD_BODY_DATA_CLASS.HEARBEAT'));
+    this.text.addBodyDataClass.diastolic.set(this.translate.instant('ADD_BODY_DATA_CLASS.DIASTOLIC'));
+    this.text.addBodyDataClass.systolic.set(this.translate.instant('ADD_BODY_DATA_CLASS.SYSTOLIC'));
+
+    this.text.addBodyDataClass.doneButton.set(this.translate.instant('ADD_BODY_DATA_CLASS.DONE_BUTTON'));
+
     this.text.record.header.set(this.translate.instant('RECORD.HEADER'));
     this.text.record.sensors.set(this.translate.instant('RECORD.SENSORS'));
     this.text.record.pedometer.set(this.translate.instant('RECORD.PEDOMETER'));

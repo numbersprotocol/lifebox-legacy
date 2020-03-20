@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-
+import { NavigationExtras } from '@angular/router';
 import { EnvService } from 'src/app/services/env/env.service';
 import { DataService } from '../../services/data/data.service';
 import { DataRenderService } from '../../services/data-render/data-render.service';
 import { SensorService } from '../../services/sensor/sensor.service';
+import { ActivatedRoute } from "@angular/router";
 
 import { CustomClassEntity } from '../../entities/customClass.entity';
 import { DailyReport } from '../../models/daily-report.model';
@@ -45,6 +46,16 @@ export class DataReportComponent implements OnInit {
     diastolic: "舒張壓",
     systolic: "收縮壓",
   };
+  state={
+    body:121212,
+    height:0,
+    weight:0,
+    urine:0,
+    sugar:0,
+    heartbeat:0,
+    diastolic:0,
+    systolic:0,
+  };
   subscriptions = new Subscription();
 
   constructor(
@@ -53,9 +64,24 @@ export class DataReportComponent implements OnInit {
     private envService: EnvService,
     private language: LanguageService,
     private navCtrl: NavController,
+    private route: ActivatedRoute
+
   ) {
     this.report = new DailyReport();
     this.subscribeText();
+    this.route.queryParams.subscribe(p => {
+      this.state={
+        body:12312313,
+        weight: p.weight,
+        height: p.height,
+        urine: p.urine,
+        sugar: p.sugar,
+        heartbeat: p.heartbeat,
+        diastolic: p.diastolic,
+        systolic: p.systolic,
+      };
+
+  });      
   }
 
   ngOnInit() {
@@ -93,6 +119,66 @@ export class DataReportComponent implements OnInit {
     return Promise.resolve();
   }
 
+  goToBloodData(classID, className, classUnit, classMin, classMax) {
+    
+    this.dataService.getSingleCustomClassDataByDate(new Date(), 7, classID)
+      .then((res) => {
+        console.log('SingleCustomClassData', res);
+        let navigationExtras: NavigationExtras = {
+
+          queryParams: {
+            height:this.state.height,
+            weight:this.state.weight,
+            urine:this.state.urine,
+            sugar:this.state.sugar,
+            heartbeat:this.state.heartbeat,
+            diastolic:this.state.diastolic,
+            systolic:this.state.systolic,
+        }
+      };
+        this.navCtrl.navigateForward(['/data-blood'],  navigationExtras);
+
+      });
+  }
+  goToBody() {
+    this.dataService.getBloodByDate()
+      .then((res) => {
+        this.navCtrl.navigateForward(['/set-body-data-class'], {
+          queryParams: {
+            data:' res[1].map(d => Math.round(d * 10) / 10),',
+            class: 'Outdoor',
+            height:this.state.height,
+            weight:this.state.weight,
+
+            urine:this.state.urine,
+            sugar:this.state.sugar,
+            heartbeat:this.state.heartbeat,
+            diastolic:this.state.diastolic,
+            systolic:this.state.systolic,
+            type: 'value',
+            unit: '%',
+            barColor: '#76A6A1',
+            hollowArray: res[2]
+          }
+        });
+      });
+  }
+
+  goToBody2() {
+    this.dataService.getIodoorByDate(new Date(), 7)
+      .then((res) => {
+        this.navCtrl.navigateForward(['/set-body-data-class'], {
+          queryParams: {
+            data: res[1].map(d => Math.round(d * 10) / 10),
+            class: 'Outdoor',
+            type: 'value',
+            unit: '%',
+            barColor: '#76A6A1',
+            hollowArray: res[2]
+          }
+        });
+      });
+  }
   goToSevenDaysIndoor() {
     this.dataService.getIodoorByDate(new Date(), 7)
       .then((res) => {
@@ -125,6 +211,7 @@ export class DataReportComponent implements OnInit {
         });
       });
   }
+
   goToTemperature() {
     this.dataService.getWeatherByDate(new Date(), 7)
       .then((res) => {
