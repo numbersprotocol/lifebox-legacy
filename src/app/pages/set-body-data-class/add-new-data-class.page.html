@@ -13,11 +13,6 @@
   <!-- <img src="assets/img/XRKHPo6ESi2u7KjGNkvt_sample.png"
     style="display:block;width:100%;height:auto;margin-left:auto;margin-right:auto;" /> -->
     <ion-label>填寫每日健康數據</ion-label>
-    <ion-label>{{num[0]}}</ion-label>
-
-    
-  
-
   <form [formGroup]="customClassForm" (submit)="saveNewClass()">
     <ng-container *ngFor="let control of formControls">
       <ion-item>

@@ -8,7 +8,7 @@ import { DataService } from '../../services/data/data.service';
 import { defaultMessages } from '../../services/validation/validation.service';
 import { CustomClassEntity } from '../../entities/customClass.entity';
 import { BloodDataClassEntity } from '../../entities/bloodDataClass.entity';
-
+import { BloodstoreService } from '../../services/blood-data-store/bloodstore.service';
 import { Storage } from '@ionic/storage';
 
 import { Subscription } from 'rxjs';
@@ -41,6 +41,43 @@ export class AddNewDataClassPage implements OnInit {
   customClassForm: FormGroup;
   formControls = [
     {
+      title: 'Interval',
+      name: 'systolic',
+      placeholder: '0',
+      type: 'number',
+      autoCapitalize: 'off',
+      autoComplete: 'off',
+      clearInput: true,
+      validationMessages: defaultMessages,
+    }, {
+      title: 'Interval',
+      name: 'diastolic',
+      placeholder: '0',
+      type: 'number',
+      autoCapitalize: 'off',
+      autoComplete: 'off',
+      clearInput: true,
+      validationMessages: defaultMessages,
+    }, {
+      title: 'Interval',
+      name: 'heartbeat',
+      placeholder: '0',
+      type: 'number',
+      autoCapitalize: 'off',
+      autoComplete: 'off',
+      clearInput: true,
+      validationMessages: defaultMessages,
+    }, {
+      title: 'Interval',
+      name: 'sugar',
+      placeholder: '0',
+      type: 'number',
+      autoCapitalize: 'off',
+      autoComplete: 'off',
+      clearInput: true,
+      validationMessages: defaultMessages,
+    },
+    {
       title: 'Expected Min',
       name: 'weight',
       placeholder: '0',
@@ -67,43 +104,8 @@ export class AddNewDataClassPage implements OnInit {
       autoComplete: 'off',
       clearInput: true,
       validationMessages: defaultMessages,
-    }, {
-      title: 'Interval',
-      name: 'sugar',
-      placeholder: '0',
-      type: 'number',
-      autoCapitalize: 'off',
-      autoComplete: 'off',
-      clearInput: true,
-      validationMessages: defaultMessages,
-    }, {
-      title: 'Interval',
-      name: 'heartbeat',
-      placeholder: '0',
-      type: 'number',
-      autoCapitalize: 'off',
-      autoComplete: 'off',
-      clearInput: true,
-      validationMessages: defaultMessages,
-    }, {
-      title: 'Interval',
-      name: 'diastolic',
-      placeholder: '0',
-      type: 'number',
-      autoCapitalize: 'off',
-      autoComplete: 'off',
-      clearInput: true,
-      validationMessages: defaultMessages,
-    }, {
-      title: 'Interval',
-      name: 'systolic',
-      placeholder: '0',
-      type: 'number',
-      autoCapitalize: 'off',
-      autoComplete: 'off',
-      clearInput: true,
-      validationMessages: defaultMessages,
     }
+
 
   ];
   text = {
@@ -120,23 +122,24 @@ export class AddNewDataClassPage implements OnInit {
     private formBuilder: FormBuilder,
     private language: LanguageService,
     private navCtrl: NavController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public bloodstoreService: BloodstoreService
   ) {
     this.storage.get('bloodData').then((p) => {
 
       this.customClassForm.patchValue({
+        systolic: p.systolic,
+        diastolic: p.diastolic,
+        heartbeat: p.heartbeat,
+        sugar: p.sugar,
         weight: p.weight,
         height: p.height,
         urine: p.urine,
-        sugar: p.sugar,
-        heartbeat: p.heartbeat,
-        diastolic: p.diastolic,
-        systolic: p.systolic,
       })
       console.log('Your age is', p);
     });
-     
-  
+
+
     // this.route.queryParams.subscribe(p => {
     //   this.customClassForm.patchValue({
     //     weight: p.weight,
@@ -168,13 +171,13 @@ export class AddNewDataClassPage implements OnInit {
 
     this.customClassForm = this.formBuilder.group({
       name: ['', Validators.required],
+      systolic: [0, fpValidator],
+      diastolic: [0, fpValidator],
+      heartbeat: [0, fpValidator],
+      sugar: [0, fpValidator],
       weight: [0, fpValidator],
       height: [0, fpValidator],
       urine: [0, fpValidator],
-      sugar: [0, fpValidator],
-      heartbeat: [0, fpValidator],
-      diastolic: [0, fpValidator],
-      systolic: [0, fpValidator],
       max: ['0', fpValidator],
       min: [0, fpValidator],
       interval: [0, fpValidator],
@@ -240,6 +243,7 @@ export class AddNewDataClassPage implements OnInit {
       diastolic: this.customClassForm.getRawValue().diastolic,
       systolic: this.customClassForm.getRawValue().systolic,
     });
+    this.bloodstoreService.Bloodstore.emit('useraction');
     this.navCtrl.navigateBack(['/tabs', 'home']);
   }
 
@@ -273,41 +277,20 @@ export class AddNewDataClassPage implements OnInit {
   private subscribeText() {
     this.subscriptions.add(this.language.text.addBodyDataClass.header.get()
       .subscribe(res => this.text.header = res));
-    // this.subscriptions.add(this.language.text.addBodyDataClass.name.get()
-    // .subscribe(res => this.formControls[0].title = res));
-
-
-    // this.subscriptions.add(this.language.text.addDataClass.expectedMin.get()
-    // .subscribe(res => this.formControls[1].title = res));
-    // this.subscriptions.add(this.language.text.addDataClass.expectedMax.get()
-    // .subscribe(res => this.formControls[2].title = res));
-    // this.subscriptions.add(this.language.text.addDataClass.interval.get()
-    // .subscribe(res => this.formControls[3].title = res));
-    // this.subscriptions.add(this.language.text.addDataClass.unit.get()
-    // .subscribe(res => this.formControls[4].title = res));
-    // this.subscriptions.add(this.language.text.addDataClass.calories.get()
-    // .subscribe(res => this.formControls[0].placeholder = res));
-    // this.subscriptions.add(this.language.text.addDataClass.kcal.get()
-    // .subscribe(res => this.formControls[4].placeholder = res));
-
-
-    this.subscriptions.add(this.language.text.addBodyDataClass.weight.get()
+    this.subscriptions.add(this.language.text.addBodyDataClass.systolic.get()
       .subscribe(res => this.formControls[0].title = res));
-    this.subscriptions.add(this.language.text.addBodyDataClass.height.get()
+    this.subscriptions.add(this.language.text.addBodyDataClass.diastolic.get()
       .subscribe(res => this.formControls[1].title = res));
-    this.subscriptions.add(this.language.text.addBodyDataClass.urine.get()
+    this.subscriptions.add(this.language.text.addBodyDataClass.heartbeat.get()
       .subscribe(res => this.formControls[2].title = res));
     this.subscriptions.add(this.language.text.addBodyDataClass.sugar.get()
       .subscribe(res => this.formControls[3].title = res));
-    this.subscriptions.add(this.language.text.addBodyDataClass.heartbeat.get()
+    this.subscriptions.add(this.language.text.addBodyDataClass.weight.get()
       .subscribe(res => this.formControls[4].title = res));
-    this.subscriptions.add(this.language.text.addBodyDataClass.diastolic.get()
+    this.subscriptions.add(this.language.text.addBodyDataClass.height.get()
       .subscribe(res => this.formControls[5].title = res));
-    this.subscriptions.add(this.language.text.addBodyDataClass.systolic.get()
+    this.subscriptions.add(this.language.text.addBodyDataClass.urine.get()
       .subscribe(res => this.formControls[6].title = res));
-
-
-
     this.subscriptions.add(this.language.text.addBodyDataClass.doneButton.get()
       .subscribe(res => this.text.doneButton = res));
   }

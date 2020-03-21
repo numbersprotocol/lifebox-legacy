@@ -7,6 +7,7 @@ import { DataRenderService } from '../../services/data-render/data-render.servic
 import { SensorService } from '../../services/sensor/sensor.service';
 import { ActivatedRoute } from "@angular/router";
 import { Storage } from '@ionic/storage';
+import { BloodstoreService} from'../../services/blood-data-store/bloodstore.service';
 
 import { CustomClassEntity } from '../../entities/customClass.entity';
 import { DailyReport } from '../../models/daily-report.model';
@@ -70,7 +71,26 @@ export class DataReportComponent implements OnInit {
     private route: ActivatedRoute,
     private storage: Storage,
     public changeDetectorRef:ChangeDetectorRef,
+    public bloodstoreService: BloodstoreService,
+    
   ) {
+    this.bloodstoreService.Bloodstore.on('useraction', () => {
+       
+    this.storage.get('bloodData').then((p) => {
+      this.p=p;
+      this.state={
+        body:12312313,
+        weight: p.weight,
+        height: p.height,
+        urine: p.urine,
+        sugar: p.sugar,
+        heartbeat: p.heartbeat,
+        diastolic: p.diastolic,
+        systolic: 3332323,
+      };
+      console.log('Your storage is update', p);
+    });
+    })
     this.report = new DailyReport();
     this.subscribeText();
     
@@ -84,7 +104,7 @@ export class DataReportComponent implements OnInit {
         sugar: p.sugar,
         heartbeat: p.heartbeat,
         diastolic: p.diastolic,
-        systolic: 3332323,
+        systolic: p.systolic,
       };
       this.changeDetectorRef.markForCheck();
 this.changeDetectorRef.detectChanges();
