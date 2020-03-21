@@ -6,6 +6,7 @@ import { DataService } from '../../services/data/data.service';
 import { DataRenderService } from '../../services/data-render/data-render.service';
 import { SensorService } from '../../services/sensor/sensor.service';
 import { ActivatedRoute } from "@angular/router";
+import { Storage } from '@ionic/storage';
 
 import { CustomClassEntity } from '../../entities/customClass.entity';
 import { DailyReport } from '../../models/daily-report.model';
@@ -64,12 +65,13 @@ export class DataReportComponent implements OnInit {
     private envService: EnvService,
     private language: LanguageService,
     private navCtrl: NavController,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private storage: Storage,
 
   ) {
     this.report = new DailyReport();
     this.subscribeText();
-    this.route.queryParams.subscribe(p => {
+    this.storage.get('bloodData').then((p) => {
       this.state={
         body:12312313,
         weight: p.weight,
@@ -80,8 +82,21 @@ export class DataReportComponent implements OnInit {
         diastolic: p.diastolic,
         systolic: p.systolic,
       };
-
-  });      
+    
+      console.log('Your age is', p);
+    });
+  //   this.route.queryParams.subscribe(p => {
+  //     this.state={
+  //       body:12312313,
+  //       weight: p.weight,
+  //       height: p.height,
+  //       urine: p.urine,
+  //       sugar: p.sugar,
+  //       heartbeat: p.heartbeat,
+  //       diastolic: p.diastolic,
+  //       systolic: p.systolic,
+  //     };
+  // });      
   }
 
   ngOnInit() {

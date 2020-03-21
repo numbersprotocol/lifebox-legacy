@@ -18,7 +18,7 @@
     
   
 
-  <form [formGroup]="customClassForm" (submit)="setNewClass()">
+  <form [formGroup]="customClassForm" (submit)="saveNewClass()">
     <ng-container *ngFor="let control of formControls">
       <ion-item>
         <ion-label>{{ control.title }}</ion-label>

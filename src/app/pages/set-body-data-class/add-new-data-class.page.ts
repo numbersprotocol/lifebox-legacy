@@ -9,6 +9,7 @@ import { defaultMessages } from '../../services/validation/validation.service';
 import { CustomClassEntity } from '../../entities/customClass.entity';
 import { BloodDataClassEntity } from '../../entities/bloodDataClass.entity';
 
+import { Storage } from '@ionic/storage';
 
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/app/services/language/language.service';
@@ -114,13 +115,15 @@ export class AddNewDataClassPage implements OnInit {
 
 
   constructor(
+    private storage: Storage,
     private dataService: DataService,
     private formBuilder: FormBuilder,
     private language: LanguageService,
     private navCtrl: NavController,
     private route: ActivatedRoute
   ) {
-    this.route.queryParams.subscribe(p => {
+    this.storage.get('bloodData').then((p) => {
+      
       this.customClassForm.patchValue({
         weight: p.weight,
         height: p.height,
@@ -130,7 +133,21 @@ export class AddNewDataClassPage implements OnInit {
         diastolic: p.diastolic,
         systolic: p.systolic,
       })
+      console.log('Your age is', p);
     });
+     
+  
+    // this.route.queryParams.subscribe(p => {
+    //   this.customClassForm.patchValue({
+    //     weight: p.weight,
+    //     height: p.height,
+    //     urine: p.urine,
+    //     sugar: p.sugar,
+    //     heartbeat: p.heartbeat,
+    //     diastolic: p.diastolic,
+    //     systolic: p.systolic,
+    //   })
+    // });
     //   this.route.queryParams.subscribe(params => {
     //     this.test123 =  JSON.parse(params.diastolic);
     //     // this.customClassForm = this.formBuilder.group({
@@ -206,15 +223,6 @@ export class AddNewDataClassPage implements OnInit {
       //   height:222,
       //         weight:222,
       //         urine:222,
-      //         sugar:"sdsdsd",
-      //         heartbeat:"2sdsd22",
-      //         diastolic:222,
-      //         systoli:222,
-      // }
-      // queryParams: {
-      //   height:222,
-      //         weight:222,
-      //         urine:222,
       //         sugar:222,
       //         heartbeat:222,
       //         diastolic:222,
@@ -222,6 +230,20 @@ export class AddNewDataClassPage implements OnInit {
       // }
     });
   }
+  async saveNewClass() {
+    await this.storage.set('bloodData', {
+      height: this.customClassForm.getRawValue().height,
+      weight: this.customClassForm.getRawValue().weight,
+      urine: this.customClassForm.getRawValue().urine,
+      sugar: this.customClassForm.getRawValue().sugar,
+      heartbeat: this.customClassForm.getRawValue().heartbeat,
+      diastolic: this.customClassForm.getRawValue().diastolic,
+      systoli: this.customClassForm.getRawValue().systoli,
+    });
+    this.navCtrl.navigateBack(['/tabs', 'home']);
+  }
+
+
 
 
   async addNewClass() {
