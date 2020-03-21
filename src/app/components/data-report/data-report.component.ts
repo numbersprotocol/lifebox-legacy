@@ -118,15 +118,28 @@ export class DataReportComponent implements OnInit {
     this.report = await this.dataRenderService.reloadJournalReport(date);
     return Promise.resolve();
   }
-
+  // let navigationExtras: NavigationExtras = this.state;
+  // this.router.navigate(['destination-path'], navigationExtras);
+  
   goToBloodData(classID, className, classUnit, classMin, classMax) {
     
     this.dataService.getSingleCustomClassDataByDate(new Date(), 7, classID)
       .then((res) => {
         console.log('SingleCustomClassData', res);
         let navigationExtras: NavigationExtras = {
-
+          // queryParams: {
+          //     // currency: JSON.stringify(currency),
+          //     height:222,
+          //     weight:222,
+          //     urine:222,
+          //     sugar:222,
+          //     heartbeat:222,
+          //     diastolic:222,
+          //     systoli:222,
+              
+          // }
           queryParams: {
+            // currency: JSON.stringify(currency),
             height:this.state.height,
             weight:this.state.weight,
             urine:this.state.urine,
@@ -138,6 +151,28 @@ export class DataReportComponent implements OnInit {
       };
         this.navCtrl.navigateForward(['/data-blood'],  navigationExtras);
 
+        // this.navCtrl.navigateForward(['/data-blood'], {
+        //   queryParams: {
+        //     data: res[0].map(d => Math.round(d * 10) / 10),
+        //     class: `${className}`,
+
+
+        //     height:222,
+        //     urine:222,
+        //     sugar:222,
+        //     heartbeat:222,
+        //     diastolic:222,
+        //     systolic:222,
+
+
+        //     type: 'value',
+        //     unit: `${classUnit}`,
+        //     min: classMin,
+        //     max: classMax,
+        //     barColor: '#FF7773',
+        //     hollowArray: res[1]
+        //   }
+        // });
       });
   }
   goToBody() {

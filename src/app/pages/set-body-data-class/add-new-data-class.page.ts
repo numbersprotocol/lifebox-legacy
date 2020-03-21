@@ -131,6 +131,24 @@ export class AddNewDataClassPage implements OnInit {
         systolic: p.systolic,
       })
     });
+    //   this.route.queryParams.subscribe(params => {
+    //     this.test123 =  JSON.parse(params.diastolic);
+    //     // this.customClassForm = this.formBuilder.group({
+    //     //   name: ['', Validators.required],
+    //     //   weight: [JSON.parse(params.weight), fpValidator],
+    //     //   height: [JSON.parse(params.height), fpValidator],
+    //     //   urine: [JSON.parse(params.urine), fpValidator],
+    //     //   sugar: [JSON.parse(params.sugar), fpValidator],
+    //     //   heartbeat: [JSON.parse(params.heartbeat), fpValidator],
+    //     //   diastolic: [JSON.parse(params.diastolic), fpValidator],
+    //     //   systolic: [JSON.parse(params.systolic), fpValidator],
+    //     //   max: [0, fpValidator],
+    //     //   min: [0, fpValidator],
+    //     //   interval: [0, fpValidator],
+    //     //   unit: [''],
+    //     // }, { validator: rangeValidator });
+    // });
+
     this.customClassForm = this.formBuilder.group({
       name: ['', Validators.required],
       weight: [0, fpValidator],
@@ -176,14 +194,32 @@ export class AddNewDataClassPage implements OnInit {
       // queryParams: this.customClassForm.getRawValue().value
       queryParams: {
         height: this.customClassForm.getRawValue().height,
+
         weight: this.customClassForm.getRawValue().weight,
         urine: this.customClassForm.getRawValue().urine,
         sugar: this.customClassForm.getRawValue().sugar,
         heartbeat: this.customClassForm.getRawValue().heartbeat,
         diastolic: this.customClassForm.getRawValue().diastolic,
-        systolic: this.customClassForm.getRawValue().systolic,
+        systoli: this.customClassForm.getRawValue().systoli,
       }
-  
+      // queryParams: {
+      //   height:222,
+      //         weight:222,
+      //         urine:222,
+      //         sugar:"sdsdsd",
+      //         heartbeat:"2sdsd22",
+      //         diastolic:222,
+      //         systoli:222,
+      // }
+      // queryParams: {
+      //   height:222,
+      //         weight:222,
+      //         urine:222,
+      //         sugar:222,
+      //         heartbeat:222,
+      //         diastolic:222,
+      //         systoli:222,
+      // }
     });
   }
 
@@ -215,6 +251,22 @@ export class AddNewDataClassPage implements OnInit {
   private subscribeText() {
     this.subscriptions.add(this.language.text.addBodyDataClass.header.get()
       .subscribe(res => this.text.header = res));
+    // this.subscriptions.add(this.language.text.addBodyDataClass.name.get()
+    // .subscribe(res => this.formControls[0].title = res));
+
+
+    // this.subscriptions.add(this.language.text.addDataClass.expectedMin.get()
+    // .subscribe(res => this.formControls[1].title = res));
+    // this.subscriptions.add(this.language.text.addDataClass.expectedMax.get()
+    // .subscribe(res => this.formControls[2].title = res));
+    // this.subscriptions.add(this.language.text.addDataClass.interval.get()
+    // .subscribe(res => this.formControls[3].title = res));
+    // this.subscriptions.add(this.language.text.addDataClass.unit.get()
+    // .subscribe(res => this.formControls[4].title = res));
+    // this.subscriptions.add(this.language.text.addDataClass.calories.get()
+    // .subscribe(res => this.formControls[0].placeholder = res));
+    // this.subscriptions.add(this.language.text.addDataClass.kcal.get()
+    // .subscribe(res => this.formControls[4].placeholder = res));
 
 
     this.subscriptions.add(this.language.text.addBodyDataClass.weight.get()
