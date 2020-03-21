@@ -350,6 +350,7 @@ export class DataService {
     });
   }
 
+  ///location
   async getLatestLocationData() {
     return new Promise<LocationEntity>((resolve, reject) => {
       this.repoService.findLocation(FindOption.LatestOne()).then((res) => {

@@ -8,7 +8,12 @@ import { SensorService } from '../../services/sensor/sensor.service';
 import { CustomClassEntity } from 'src/app/entities/customClass.entity';
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { DataService } from '../../services/data/data.service';
 
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+ 
 @Component({
   selector: 'app-control-center',
   templateUrl: './control-center.page.html',
@@ -31,6 +36,15 @@ export class ControlCenterPage implements OnInit {
     customClass: '',
     updateButton: '',
   };
+  locationCoords: any;
+  latitude: number;
+  longitude: number;
+  timetest: any;
+  localData: any;
+  S: number;
+  W: number;
+  E: number;
+  N: number;
   subscriptions = new Subscription();
 
   constructor(
@@ -39,10 +53,88 @@ export class ControlCenterPage implements OnInit {
     private language: LanguageService,
     private navCtrl: NavController,
     private sensorService: SensorService,
-    private repoService: RepoService
+    private repoService: RepoService,
+    private dataService: DataService,
+
+    private androidPermissions: AndroidPermissions,
+    private geolocation: Geolocation,
+    private locationAccuracy: LocationAccuracy
+    
   ) {
+    this.locationCoords = {
+      latitude: "",
+      longitude: "",
+      accuracy: "",
+      timestamp: ""
+    }
     this.subscribeText();
+    this.timetest = Date.now();
+
   }
+  checkGPSPermission() {
+    this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
+      result => {
+        if (result.hasPermission) {
+
+          //If having permission show 'Turn On GPS' dialogue
+          this.askToTurnOnGPS();
+        } else {
+
+          //If not having permission ask for permission
+          this.requestGPSPermission();
+        }
+      },
+      err => {
+        alert(err);
+      }
+    );
+  }
+
+  requestGPSPermission() {
+    this.locationAccuracy.canRequest().then((canRequest: boolean) => {
+      if (canRequest) {
+        console.log("4");
+      } else {
+        //Show 'GPS Permission Request' dialogue
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION)
+          .then(
+            () => {
+              // call method to turn on GPS
+              this.askToTurnOnGPS();
+            },
+            error => {
+              //Show alert if user click on 'No Thanks'
+              alert('requestPermission Error requesting location permissions ' + error)
+            }
+          );
+      }
+    });
+  }
+
+  askToTurnOnGPS() {
+    this.locationAccuracy.request(this.locationAccuracy.REQUEST_PRIORITY_HIGH_ACCURACY).then(
+      () => {
+        // When GPS Turned ON call method to get Accurate location coordinates
+        this.getLocationCoordinates()
+      },
+      error => alert('Error requesting location permissions ' + JSON.stringify(error))
+    );
+  }
+
+  // Methos to get device accurate coordinates using device GPS
+  getLocationCoordinates() {
+    this.geolocation.getCurrentPosition().then((resp) => {
+      this.latitude = resp.coords.latitude;
+      this.longitude = resp.coords.longitude;
+      this.locationCoords.accuracy = resp.coords.accuracy;
+      this.locationCoords.timestamp = resp.timestamp;
+      console.log(this.latitude )
+      console.log(this.longitude )
+
+    }).catch((error) => {
+      alert('Error getting location' + error);
+    });
+  } 
 
   ngOnInit() {
     this.language.updateText();
@@ -66,7 +158,22 @@ export class ControlCenterPage implements OnInit {
   handleGyroscopeToggleChange() {
     this.sensorService.updateGyroscopeSensorStatus(this.gyroscopeEnabled);
   }
+  GetLocation() {
+    // this.sensorService.locationSubscription.unsubscribe();
+    this.dataService.addLocationStatus(false).then(res => {
+      console.log('locationStatus added: ', res);
+      console.log('longitude: ', res);
+      console.log('latitude: ', res);
+    });
 
+        // .then((res) => {
+    //   console.log('Save location entity: ', res)
+    //   console.log("longitude" + res.longitude);
+    //   console.log("latitude" + res.latitude);
+    // }
+    // )
+    // .catch(e => console.log(e));
+  }
   async delete(customClass: CustomClassEntity) {
     const alert = await this.alertController.create({
       header: 'Delete data class confirmation',
@@ -126,6 +233,5 @@ export class ControlCenterPage implements OnInit {
     this.subscriptions.add(this.language.text.record.updateButton.get()
     .subscribe(res => this.text.updateButton = res));
   }
-
 
 }

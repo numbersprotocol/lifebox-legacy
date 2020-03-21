@@ -20,6 +20,11 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
+import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
+
+
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -41,6 +46,10 @@ import { LoggerService } from './services/logger/logger.service';
 import { ToastService } from './services/toast/toast.service';
 import { LoginService } from './services/login/login.service';
 import { DialogService } from './services/dialog/dialog.service';
+
+
+
+
 
 export function LanguageLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -77,7 +86,9 @@ export function LanguageLoader(http: HttpClient) {
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     HTTP,
+    AndroidPermissions,
     Geolocation,
+    LocationAccuracy,
     Gyroscope,
     Pedometer,
     SocialSharing,

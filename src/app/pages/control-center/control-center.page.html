@@ -19,16 +19,29 @@
         <ion-label [textContent]="text.sensors"></ion-label>
       </ion-list-header>
 
-
-     
       <ion-item>
-        <ion-icon name="locate" slot="start"></ion-icon>
+        <!-- <ion-button color="light" expand="block" textContent="紀錄居家位置">
+          <ion-icon name="locate" slot="start"></ion-icon>
+        </ion-button> -->
+        <ion-button color="secondary">
+          <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+        </ion-button>
+        <ion-button color="light" (click)="checkGPSPermission()" >
+          <ion-icon name="locate" slot="start"></ion-icon>
+          <ion-label>紀錄居家位置</ion-label>          
+        </ion-button>
+        <ion-label>{{latitude}}{{longitude}}</ion-label>          
 
-        <ion-label>居家位置</ion-label>
-        <ion-input value="Readonly" readonly></ion-input>
 
       </ion-item>
-
+      <ion-item>
+        <ion-icon name="locate" slot="start"></ion-icon>
+        <ion-label>居家位置 : </ion-label>
+        <ion-input value="Readonly" placeholder="位置"></ion-input>
+        <!-- <ion-input [formControlName]="control.name" [placeholder]="control.placeholder" [type]="control.type"
+        [autocapitalize]="control.autoCapitalize" [autocomplete]="control.autoComplete"
+        [clearInput]="control.clearInput"></ion-input> -->
+      </ion-item>
       <ion-item>
         <ion-label>{{ text.pedometer }} ({{ text.beta }})</ion-label>
         <ion-toggle [(ngModel)]="pedometerEnabled" name="pedometerEnabled" (ionChange)="handlePedometerToggleChange()"
@@ -51,10 +64,10 @@
       </ion-list-header>
       <ion-item *ngFor="let class of customClasses">
         <ion-icon [name]="class.icon" slot="start"></ion-icon>
-        <ion-label slot="start">  {{ class.name }}  </ion-label>
+        <ion-label slot="start"> {{ class.name }} </ion-label>
         <ion-input [(ngModel)]="class.records[0].value" type="number" [ngModelOptions]="{standalone: true}"
           name="class_value"></ion-input>
-        <ion-label *ngIf="class.unit" slot="end">  {{ class.unit }}  </ion-label>
+        <ion-label *ngIf="class.unit" slot="end"> {{ class.unit }} </ion-label>
         <ion-icon (click)="delete(class)" name="trash" slot="end"></ion-icon>
       </ion-item>
     </ion-list>

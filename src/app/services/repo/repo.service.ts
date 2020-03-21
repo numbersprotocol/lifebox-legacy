@@ -104,6 +104,7 @@ export class RepoService {
     return this.findData(this.repo.iodoorMeta, findOptions);
   }
 
+  ///Location
   async findLocation(findOptions: FindManyOptions = null) {
     return this.findData(this.repo.location, findOptions);
   }
@@ -180,6 +181,7 @@ export class RepoService {
     return this.saveData(this.repo.iodoorMeta, entity);
   }
 
+  ///Location
   async saveLocation(entity: LocationEntity) {
     return this.saveData(this.repo.location, entity);
   }
