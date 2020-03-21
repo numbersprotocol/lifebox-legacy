@@ -123,7 +123,7 @@ export class AddNewDataClassPage implements OnInit {
     private route: ActivatedRoute
   ) {
     this.storage.get('bloodData').then((p) => {
-      
+
       this.customClassForm.patchValue({
         weight: p.weight,
         height: p.height,
@@ -217,7 +217,7 @@ export class AddNewDataClassPage implements OnInit {
         sugar: this.customClassForm.getRawValue().sugar,
         heartbeat: this.customClassForm.getRawValue().heartbeat,
         diastolic: this.customClassForm.getRawValue().diastolic,
-        systoli: this.customClassForm.getRawValue().systoli,
+        systolic: this.customClassForm.getRawValue().systolic,
       }
       // queryParams: {
       //   height:222,
@@ -238,7 +238,7 @@ export class AddNewDataClassPage implements OnInit {
       sugar: this.customClassForm.getRawValue().sugar,
       heartbeat: this.customClassForm.getRawValue().heartbeat,
       diastolic: this.customClassForm.getRawValue().diastolic,
-      systoli: this.customClassForm.getRawValue().systoli,
+      systolic: this.customClassForm.getRawValue().systolic,
     });
     this.navCtrl.navigateBack(['/tabs', 'home']);
   }

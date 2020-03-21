@@ -14,6 +14,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { LanguageService } from 'src/app/services/language/language.service';
 
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-data-report',
@@ -57,6 +58,7 @@ export class DataReportComponent implements OnInit {
     diastolic:0,
     systolic:0,
   };
+  p={};
   subscriptions = new Subscription();
 
   constructor(
@@ -67,11 +69,13 @@ export class DataReportComponent implements OnInit {
     private navCtrl: NavController,
     private route: ActivatedRoute,
     private storage: Storage,
-
+    public changeDetectorRef:ChangeDetectorRef,
   ) {
     this.report = new DailyReport();
     this.subscribeText();
+    
     this.storage.get('bloodData').then((p) => {
+      this.p=p;
       this.state={
         body:12312313,
         weight: p.weight,
@@ -80,11 +84,14 @@ export class DataReportComponent implements OnInit {
         sugar: p.sugar,
         heartbeat: p.heartbeat,
         diastolic: p.diastolic,
-        systolic: p.systolic,
+        systolic: 3332323,
       };
-    
-      console.log('Your age is', p);
+      this.changeDetectorRef.markForCheck();
+this.changeDetectorRef.detectChanges();
+      console.log('Your storage is update', p);
     });
+//     this.changeDetectorRef.markForCheck();
+// this.changeDetectorRef.detectChanges();
   //   this.route.queryParams.subscribe(p => {
   //     this.state={
   //       body:12312313,
@@ -150,7 +157,7 @@ export class DataReportComponent implements OnInit {
           //     sugar:222,
           //     heartbeat:222,
           //     diastolic:222,
-          //     systoli:222,
+          //     systolic:222,
               
           // }
           queryParams: {
