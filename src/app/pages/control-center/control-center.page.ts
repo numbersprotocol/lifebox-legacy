@@ -46,6 +46,7 @@ export class ControlCenterPage implements OnInit {
   W: number;
   E: number;
   N: number;
+  inHome: any;
   subscriptions = new Subscription();
 
   constructor(
@@ -62,12 +63,12 @@ export class ControlCenterPage implements OnInit {
     private androidPermissions: AndroidPermissions,
     private geolocation: Geolocation,
     private locationAccuracy: LocationAccuracy
-    
+
   ) {
     this.storage.get('coords').then((p) => {
-      this.latitude= p.latitude,
-      this.longitude= p.longitude,
-      console.log('Your coords is', p);
+      this.latitude = p.latitude,
+        this.longitude = p.longitude,
+        console.log('Your coords is', p);
     });
 
     this.locationCoords = {
@@ -93,9 +94,49 @@ export class ControlCenterPage implements OnInit {
   //   this.bloodstoreService.Bloodstore.emit('useraction');
   //   this.navCtrl.navigateBack(['/tabs', 'home']);
   // }
- 
+  async startCalc() {
+    // var latitude = 24.147911; 
+    // var longitude = 120.673141;
+    await this.checkGPSPermission()
+    var homeLatitude = this.latitude;
+    var homeLongitude = this.longitude;
+    this.storage.get('coords').then((p) => {
+      homeLatitude = p.latitude,
+        homeLongitude = p.longitude,
+        console.log('Your coords is', p);
+    });
+    var c = 0.5;
+    var lat_diff = c / 110.574;  //利用距離的比例來算出緯度上的比例
+    var lon_distance = 111.320 * Math.cos(homeLatitude * Math.PI / 180); //算出該緯度上的經度長度
+    var lon_diff = c / lon_distance; //利用距離的比例來算出經度上的比例
+    // var N = latitude + Math.abs(lat_diff),
+    // S = latitude - Math.abs(lat_diff),
+    // E = longitude+ Math.abs(lon_diff),
+    // W = longitude- Math.abs(lon_diff);
 
-   checkGPSPermission() {
+    this.N = homeLatitude + Math.abs(lat_diff),
+      this.S = homeLatitude - Math.abs(lat_diff),
+      this.E = homeLongitude + Math.abs(lon_diff),
+      this.W = homeLongitude - Math.abs(lon_diff);
+
+
+    if (this.W < this.longitude && this.longitude < this.E && this.S < this.latitude && this.latitude < this.N) {
+      alert('location OK');
+      this.inHome = "OK";
+    } else {
+      alert('location NO');
+    }
+  }
+
+  async getHomeLocltion() {
+    await this.checkGPSPermission()
+    this.storage.set('coords', {
+      latitude: this.latitude,
+      longitude: this.longitude
+    });
+  }
+
+  checkGPSPermission() {
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
       result => {
         if (result.hasPermission) {
@@ -152,17 +193,18 @@ export class ControlCenterPage implements OnInit {
       this.longitude = resp.coords.longitude;
       this.locationCoords.accuracy = resp.coords.accuracy;
       this.locationCoords.timestamp = resp.timestamp;
-      console.log(this.latitude )
-      console.log(this.longitude )
-       this.storage.set('coords', {
-        latitude:this.latitude,
-        longitude:this.longitude
-      });
-
+      console.log(this.latitude)
+      console.log(this.longitude)
+      //  this.storage.set('coords', {
+      //   latitude:this.latitude,
+      //   longitude:this.longitude
+      // });
+      // return { latitude:this.latitude,
+      //   longitude:this.longitude}
     }).catch((error) => {
       alert('Error getting location' + error);
     });
-  } 
+  }
 
   ngOnInit() {
     this.language.updateText();
@@ -194,7 +236,7 @@ export class ControlCenterPage implements OnInit {
       console.log('latitude: ', res);
     });
 
-        // .then((res) => {
+    // .then((res) => {
     //   console.log('Save location entity: ', res)
     //   console.log("longitude" + res.longitude);
     //   console.log("latitude" + res.latitude);
@@ -211,7 +253,7 @@ export class ControlCenterPage implements OnInit {
           text: 'No',
           role: 'cancel',
           cssClass: 'secondary',
-          handler: () => {}
+          handler: () => { }
         }, {
           text: 'Yes',
           handler: async () => {
@@ -245,21 +287,21 @@ export class ControlCenterPage implements OnInit {
 
   private subscribeText() {
     this.subscriptions.add(this.language.text.record.header.get()
-    .subscribe(res => this.text.header = res));
+      .subscribe(res => this.text.header = res));
     this.subscriptions.add(this.language.text.record.sensors.get()
-    .subscribe(res => this.text.sensors = res));
+      .subscribe(res => this.text.sensors = res));
     this.subscriptions.add(this.language.text.record.pedometer.get()
-    .subscribe(res => this.text.pedometer = res));
+      .subscribe(res => this.text.pedometer = res));
     this.subscriptions.add(this.language.text.record.location.get()
-    .subscribe(res => this.text.location = res));
+      .subscribe(res => this.text.location = res));
     this.subscriptions.add(this.language.text.record.gyroscope.get()
-    .subscribe(res => this.text.gyroscope = res));
+      .subscribe(res => this.text.gyroscope = res));
     this.subscriptions.add(this.language.text.record.beta.get()
-    .subscribe(res => this.text.beta = res));
+      .subscribe(res => this.text.beta = res));
     this.subscriptions.add(this.language.text.record.customClass.get()
-    .subscribe(res => this.text.customClass = res));
+      .subscribe(res => this.text.customClass = res));
     this.subscriptions.add(this.language.text.record.updateButton.get()
-    .subscribe(res => this.text.updateButton = res));
+      .subscribe(res => this.text.updateButton = res));
   }
 
 }

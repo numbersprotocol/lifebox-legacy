@@ -26,13 +26,13 @@
         <ion-button color="secondary">
           <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
         </ion-button>
-        <ion-button color="light" (click)="checkGPSPermission()" >
+        <ion-button color="light" (click)="getHomeLocltion()" >
           <ion-icon name="locate" slot="start"></ion-icon>
           <ion-label>紀錄居家位置</ion-label>          
         </ion-button>
-        <ion-button color="light" (click)="checkGPSPermission()" >
+        <ion-button color="light" (click)="startCalc()" >
           <ion-icon name="locate" slot="start"></ion-icon>
-          <ion-label>比較紀錄位置</ion-label>          
+          <ion-label>比較紀錄位置{{inHome}}</ion-label>          
         </ion-button>
 
 
