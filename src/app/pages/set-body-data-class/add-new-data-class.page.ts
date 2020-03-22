@@ -151,23 +151,7 @@ export class AddNewDataClassPage implements OnInit {
     //     systolic: p.systolic,
     //   })
     // });
-    //   this.route.queryParams.subscribe(params => {
-    //     this.test123 =  JSON.parse(params.diastolic);
-    //     // this.customClassForm = this.formBuilder.group({
-    //     //   name: ['', Validators.required],
-    //     //   weight: [JSON.parse(params.weight), fpValidator],
-    //     //   height: [JSON.parse(params.height), fpValidator],
-    //     //   urine: [JSON.parse(params.urine), fpValidator],
-    //     //   sugar: [JSON.parse(params.sugar), fpValidator],
-    //     //   heartbeat: [JSON.parse(params.heartbeat), fpValidator],
-    //     //   diastolic: [JSON.parse(params.diastolic), fpValidator],
-    //     //   systolic: [JSON.parse(params.systolic), fpValidator],
-    //     //   max: [0, fpValidator],
-    //     //   min: [0, fpValidator],
-    //     //   interval: [0, fpValidator],
-    //     //   unit: [''],
-    //     // }, { validator: rangeValidator });
-    // });
+    
 
     this.customClassForm = this.formBuilder.group({
       name: ['', Validators.required],
@@ -211,7 +195,6 @@ export class AddNewDataClassPage implements OnInit {
 
   async setNewClass() {
     this.navCtrl.navigateBack(['/tabs', 'home'], {
-      // queryParams: this.customClassForm.getRawValue().value
       queryParams: {
         height: this.customClassForm.getRawValue().height,
 
@@ -222,15 +205,6 @@ export class AddNewDataClassPage implements OnInit {
         diastolic: this.customClassForm.getRawValue().diastolic,
         systolic: this.customClassForm.getRawValue().systolic,
       }
-      // queryParams: {
-      //   height:222,
-      //         weight:222,
-      //         urine:222,
-      //         sugar:222,
-      //         heartbeat:222,
-      //         diastolic:222,
-      //         systoli:222,
-      // }
     });
   }
   async saveNewClass() {

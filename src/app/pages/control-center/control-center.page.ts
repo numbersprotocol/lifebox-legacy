@@ -95,8 +95,8 @@ export class ControlCenterPage implements OnInit {
   //   this.navCtrl.navigateBack(['/tabs', 'home']);
   // }
   async startCalc() {
-    // var latitude = 24.147911; 
-    // var longitude = 120.673141;
+    // var homeLatitude = 24.147911; 
+    // var homeLongitude = 120.673141;
     await this.checkGPSPermission()
     var homeLatitude = this.latitude;
     var homeLongitude = this.longitude;
@@ -105,14 +105,11 @@ export class ControlCenterPage implements OnInit {
         homeLongitude = p.longitude,
         console.log('Your coords is', p);
     });
-    var c = 0.5;
+    var c = 0.5;//ＫＭ
     var lat_diff = c / 110.574;  //利用距離的比例來算出緯度上的比例
     var lon_distance = 111.320 * Math.cos(homeLatitude * Math.PI / 180); //算出該緯度上的經度長度
     var lon_diff = c / lon_distance; //利用距離的比例來算出經度上的比例
-    // var N = latitude + Math.abs(lat_diff),
-    // S = latitude - Math.abs(lat_diff),
-    // E = longitude+ Math.abs(lon_diff),
-    // W = longitude- Math.abs(lon_diff);
+
 
     this.N = homeLatitude + Math.abs(lat_diff),
       this.S = homeLatitude - Math.abs(lat_diff),
@@ -140,11 +137,9 @@ export class ControlCenterPage implements OnInit {
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
       result => {
         if (result.hasPermission) {
-
           //If having permission show 'Turn On GPS' dialogue
           this.askToTurnOnGPS();
         } else {
-
           //If not having permission ask for permission
           this.requestGPSPermission();
         }
@@ -229,20 +224,11 @@ export class ControlCenterPage implements OnInit {
     this.sensorService.updateGyroscopeSensorStatus(this.gyroscopeEnabled);
   }
   GetLocation() {
-    // this.sensorService.locationSubscription.unsubscribe();
     this.dataService.addLocationStatus(false).then(res => {
       console.log('locationStatus added: ', res);
       console.log('longitude: ', res);
       console.log('latitude: ', res);
     });
-
-    // .then((res) => {
-    //   console.log('Save location entity: ', res)
-    //   console.log("longitude" + res.longitude);
-    //   console.log("latitude" + res.latitude);
-    // }
-    // )
-    // .catch(e => console.log(e));
   }
   async delete(customClass: CustomClassEntity) {
     const alert = await this.alertController.create({
