@@ -13,7 +13,8 @@ import { DataService } from '../../services/data/data.service';
 import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { LocationAccuracy } from '@ionic-native/location-accuracy/ngx';
- 
+import { Storage } from '@ionic/storage';
+
 @Component({
   selector: 'app-control-center',
   templateUrl: './control-center.page.html',
@@ -56,11 +57,19 @@ export class ControlCenterPage implements OnInit {
     private repoService: RepoService,
     private dataService: DataService,
 
+    private storage: Storage,
+
     private androidPermissions: AndroidPermissions,
     private geolocation: Geolocation,
     private locationAccuracy: LocationAccuracy
     
   ) {
+    this.storage.get('coords').then((p) => {
+      this.latitude= p.latitude,
+      this.longitude= p.longitude,
+      console.log('Your coords is', p);
+    });
+
     this.locationCoords = {
       latitude: "",
       longitude: "",
@@ -71,7 +80,22 @@ export class ControlCenterPage implements OnInit {
     this.timetest = Date.now();
 
   }
-  checkGPSPermission() {
+  // async saveNewClass() {
+  //   await this.storage.set('bloodData', {
+  //     height: this.customClassForm.getRawValue().height,
+  //     weight: this.customClassForm.getRawValue().weight,
+  //     urine: this.customClassForm.getRawValue().urine,
+  //     sugar: this.customClassForm.getRawValue().sugar,
+  //     heartbeat: this.customClassForm.getRawValue().heartbeat,
+  //     diastolic: this.customClassForm.getRawValue().diastolic,
+  //     systolic: this.customClassForm.getRawValue().systolic,
+  //   });
+  //   this.bloodstoreService.Bloodstore.emit('useraction');
+  //   this.navCtrl.navigateBack(['/tabs', 'home']);
+  // }
+ 
+
+   checkGPSPermission() {
     this.androidPermissions.checkPermission(this.androidPermissions.PERMISSION.ACCESS_COARSE_LOCATION).then(
       result => {
         if (result.hasPermission) {
@@ -130,6 +154,10 @@ export class ControlCenterPage implements OnInit {
       this.locationCoords.timestamp = resp.timestamp;
       console.log(this.latitude )
       console.log(this.longitude )
+       this.storage.set('coords', {
+        latitude:this.latitude,
+        longitude:this.longitude
+      });
 
     }).catch((error) => {
       alert('Error getting location' + error);

@@ -30,14 +30,16 @@
           <ion-icon name="locate" slot="start"></ion-icon>
           <ion-label>紀錄居家位置</ion-label>          
         </ion-button>
-        <ion-label>{{latitude}}{{longitude}}</ion-label>          
+        <ion-button color="light" (click)="checkGPSPermission()" >
+          <ion-icon name="locate" slot="start"></ion-icon>
+          <ion-label>比較紀錄位置</ion-label>          
+        </ion-button>
 
 
       </ion-item>
       <ion-item>
         <ion-icon name="locate" slot="start"></ion-icon>
-        <ion-label>居家位置 : </ion-label>
-        <ion-input value="Readonly" placeholder="位置"></ion-input>
+        <ion-label>{{latitude}}{{longitude}}</ion-label>
         <!-- <ion-input [formControlName]="control.name" [placeholder]="control.placeholder" [type]="control.type"
         [autocapitalize]="control.autoCapitalize" [autocomplete]="control.autoComplete"
         [clearInput]="control.clearInput"></ion-input> -->
