@@ -35,3 +35,5 @@ UserInterfaceState.xcuserstate
 
 # CI artifacts
 ci-test/
+
+src/environments/environment.ts
