@@ -86,7 +86,7 @@ export class DataReportComponent implements OnInit {
         sugar: p.sugar,
         heartbeat: p.heartbeat,
         diastolic: p.diastolic,
-        systolic: 3332323,
+        systolic: p.systolic,
       };
       console.log('Your storage is update', p);
     });
