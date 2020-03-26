@@ -31,7 +31,7 @@ export class ConfigEntity {
     gyroscopeSensor: boolean;
 
     @Column({
-        default: 'en'
+        default: 'zh-tw'
     })
     language: string;
 

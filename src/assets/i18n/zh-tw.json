@@ -68,7 +68,13 @@
     },
     "HOME": {
         "HEADER": "主頁",
-        "TITLE": "日常活動"
+        "TITLE": "日常活動",
+      
+            "BLOOD":"血壓",
+            "BODY":"身體紀錄",
+            "EVENT":"活動紀錄",
+            "CONFIG":"自定義紀錄"
+        
     },
     "VISUALIZATION": {
         "WEEK_DAYS": {
@@ -126,6 +132,18 @@
         "UNIT": "單位",
         "CALORIES": "卡路里",
         "KCAL": "千卡",
+        "DONE_BUTTON": "新增"
+    },
+    "ADD_BODY_DATA_CLASS": {
+        "HEADER": "新增健康數據",
+        "NAME": "名稱",
+        "WEIGHT": "體重",
+        "HEIGHT": "身高",
+        "URINE": "尿量",
+        "SUGAR": "血糖",
+        "HEARBEAT": "心跳",
+        "DIASTOLIC": "舒張壓",
+        "SYSTOLIC": "收縮壓",
         "DONE_BUTTON": "新增"
     },
     "RECORD": {

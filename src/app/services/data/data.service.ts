@@ -31,6 +31,8 @@ export class DataService {
     private repoService: RepoService
   ) {
   }
+ 
+
 
   async addCustomizeClassData() {
     const today = new Date().setHours(0, 0, 0, 0);
@@ -348,6 +350,7 @@ export class DataService {
     });
   }
 
+  ///location
   async getLatestLocationData() {
     return new Promise<LocationEntity>((resolve, reject) => {
       this.repoService.findLocation(FindOption.LatestOne()).then((res) => {
@@ -495,6 +498,11 @@ export class DataService {
     });
 
     return [sevenDaysIndoor, sevenDaysOutdoor, iodoorHollow];
+  }
+
+  async getBloodByDate() {
+
+    return [0, 11,22, 33,44,55,66,77];
   }
 
   async getSleepByDate(endDate: Date, howManyDays: number = 0) {

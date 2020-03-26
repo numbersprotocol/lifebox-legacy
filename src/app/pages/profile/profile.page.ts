@@ -36,7 +36,7 @@ export class ProfilePage implements OnInit {
     updateButton: '',
   };
   subscriptions = new Subscription();
-  languageSelection = 'en';
+  languageSelection = 'zh-tw';
   profileForm: FormGroup;
   imgUrl: SafeUrl;
   genderSpec: [];

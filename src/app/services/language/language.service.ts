@@ -21,7 +21,7 @@ export class LanguageService {
   }
 
   getDefaultLanguage() {
-    const defaultLanguage = 'en';
+    const defaultLanguage = 'zh-tw';
     this.translate.setDefaultLang(defaultLanguage);
     return defaultLanguage;
   }
@@ -87,6 +87,10 @@ export class LanguageService {
     this.text.help.continue.set(this.translate.instant('HELP.CONTINUE'));
     this.text.home.header.set(this.translate.instant('HOME.HEADER'));
     this.text.home.title.set(this.translate.instant('HOME.TITLE'));
+    this.text.home.blood.set(this.translate.instant('HOME.BLOOD'));
+    this.text.home.body.set(this.translate.instant('HOME.BODY'));
+    this.text.home.event.set(this.translate.instant('HOME.EVENT'));
+    this.text.home.config.set(this.translate.instant('HOME.CONFIG'));
     this.text.visualization.weekDays.sun.set(this.translate.instant('VISUALIZATION.WEEK_DAYS.SUN'));
     this.text.visualization.weekDays.mon.set(this.translate.instant('VISUALIZATION.WEEK_DAYS.MON'));
     this.text.visualization.weekDays.tue.set(this.translate.instant('VISUALIZATION.WEEK_DAYS.TUE'));
@@ -131,6 +135,23 @@ export class LanguageService {
     this.text.addDataClass.calories.set(this.translate.instant('ADD_DATA_CLASS.CALORIES'));
     this.text.addDataClass.kcal.set(this.translate.instant('ADD_DATA_CLASS.KCAL'));
     this.text.addDataClass.doneButton.set(this.translate.instant('ADD_DATA_CLASS.DONE_BUTTON'));
+
+
+
+    this.text.addBodyDataClass.header.set(this.translate.instant('ADD_BODY_DATA_CLASS.HEADER'));
+    this.text.addBodyDataClass.name.set(this.translate.instant('ADD_BODY_DATA_CLASS.NAME'));
+
+
+    this.text.addBodyDataClass.weight.set(this.translate.instant('ADD_BODY_DATA_CLASS.WEIGHT'));
+    this.text.addBodyDataClass.height.set(this.translate.instant('ADD_BODY_DATA_CLASS.HEIGHT'));
+    this.text.addBodyDataClass.urine.set(this.translate.instant('ADD_BODY_DATA_CLASS.URINE'));
+    this.text.addBodyDataClass.sugar.set(this.translate.instant('ADD_BODY_DATA_CLASS.SUGAR'));
+    this.text.addBodyDataClass.heartbeat.set(this.translate.instant('ADD_BODY_DATA_CLASS.HEARBEAT'));
+    this.text.addBodyDataClass.diastolic.set(this.translate.instant('ADD_BODY_DATA_CLASS.DIASTOLIC'));
+    this.text.addBodyDataClass.systolic.set(this.translate.instant('ADD_BODY_DATA_CLASS.SYSTOLIC'));
+
+    this.text.addBodyDataClass.doneButton.set(this.translate.instant('ADD_BODY_DATA_CLASS.DONE_BUTTON'));
+
     this.text.record.header.set(this.translate.instant('RECORD.HEADER'));
     this.text.record.sensors.set(this.translate.instant('RECORD.SENSORS'));
     this.text.record.pedometer.set(this.translate.instant('RECORD.PEDOMETER'));

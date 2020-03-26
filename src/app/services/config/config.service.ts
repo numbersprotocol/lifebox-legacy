@@ -14,7 +14,7 @@ export class ConfigService {
     private file: File
     ) {
       this.config = {
-        language: 'en',
+        language: 'zh-tw',
         sensors: {
           location: false,
           pedometer: false,

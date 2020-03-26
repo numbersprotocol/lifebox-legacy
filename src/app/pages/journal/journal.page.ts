@@ -48,7 +48,7 @@ export class JournalPage implements OnInit {
   }
 
   private subscribeText() {
-    this.subscriptions.add(this.language.text.home.header.get()
+    this.subscriptions.add(this.language.text.journal.header.get()
     .subscribe(res => this.text.header = res));
   }
 }

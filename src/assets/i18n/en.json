@@ -68,7 +68,13 @@
     },
     "HOME": {
         "HEADER": "Home",
-        "TITLE": "My daily activity"
+        "TITLE": "My daily activity",
+    
+            "BLOOD":"BLOOD_DATA",
+            "BODY":"BODYE_DATA",
+            "EVENT":"EVENT_DATA",
+            "CONFIG":"CONFIG_DATA_REPORT"
+        
     },
     "VISUALIZATION": {
         "WEEK_DAYS": {
@@ -126,6 +132,18 @@
         "UNIT": "Unit",
         "CALORIES": "Calories",
         "KCAL": "kcal",
+        "DONE_BUTTON": "DONE"
+    },
+    "ADD_BODY_DATA_CLASS": {
+        "HEADER": "Add New Data Class",
+        "NAME": "Name",
+        "WEIGHT": "weight",
+        "HEIGHT": "height",
+        "URINE": "urine",
+        "SUGAR": "sugar",
+        "HEARBEAT": "heartbeat",
+        "DIASTOLIC": "diastolic",
+        "SYSTOLIC": "systolic",
         "DONE_BUTTON": "DONE"
     },
     "RECORD": {

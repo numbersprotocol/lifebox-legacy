@@ -14,7 +14,7 @@ export class ToastService {
 
   async showError() {
     const showDetailButton: ToastButton = {
-      text: 'Log Viewer',
+      text: 'LogG Viewer',
       handler: () => this.navCtrl.navigateForward(['/log-viewer']),
     };
     const options: ToastOptions = {

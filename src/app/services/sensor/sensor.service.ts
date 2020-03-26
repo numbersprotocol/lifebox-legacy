@@ -71,6 +71,7 @@ export class SensorService {
     console.log('Location Sensor configured');
   }
 
+
   async updateLocationSensorStatus(toggle: boolean = null) {
     if (toggle !== null) { await this.configService.toggleLocationSensor(toggle); }
     const status = await this.configService.isLocationSensorOn();
@@ -94,10 +95,11 @@ export class SensorService {
     (await this.configService.isGyroscopeSensorOn()) ? this.watchGyroscopeData() : this.unwatchGyroscopeData();
   }
 
-  private createLocationEntity(data: BackgroundGeolocationResponse) {
+   createLocationEntity(data: BackgroundGeolocationResponse) {
     const locationEntity = new LocationEntity();
     locationEntity.dataTimestamp = new Date().getTime();
     Object.assign(locationEntity, data);
+    console.log("locationEntity",locationEntity)
     return locationEntity;
   }
 
@@ -117,9 +119,15 @@ export class SensorService {
     return gyroscopeEntity;
   }
 
+  ///看起來是在這取得資料///
   private locationEventHandler(data: BackgroundGeolocationResponse) {
     this.repoService.saveLocation(this.createLocationEntity(data))
-      .then((res) => console.log('Save location entity: ', res))
+      .then((res) => {
+        console.log('Save location entity: ', res)
+        console.log("longitude" + res.longitude);
+        console.log("latitude" + res.latitude);
+      }
+      )
       .catch(e => console.log(e));
 
     this.dataService.getDailyIodoorData(new Date()).then((iodoorData: IodoorDataEntity) => {
