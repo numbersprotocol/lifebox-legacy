@@ -40,13 +40,16 @@ export class ControlCenterPage implements OnInit {
   locationCoords: any;
   latitude: number;
   longitude: number;
+  HomeLatitude: number;
+  HomeLongitude: number;
   timetest: any;
   localData: any;
   S: number;
   W: number;
   E: number;
   N: number;
-  inHome: any;
+  inHome="在家中";
+  
   subscriptions = new Subscription();
 
   constructor(
@@ -65,18 +68,18 @@ export class ControlCenterPage implements OnInit {
     private locationAccuracy: LocationAccuracy
 
   ) {
-    this.storage.get('coords').then((p) => {
-      this.latitude = p.latitude,
-        this.longitude = p.longitude,
-        console.log('Your coords is', p);
+    this.storage.get('HomeCoords').then((p) => {
+      this.HomeLatitude = p.latitude,
+        this.HomeLongitude = p.longitude,
+        console.log('Your HomeCoords is', p);
     });
 
-    this.locationCoords = {
-      latitude: "",
-      longitude: "",
-      accuracy: "",
-      timestamp: ""
-    }
+    // this.locationCoords = {
+    //   latitude: "",
+    //   longitude: "",
+    //   accuracy: "",
+    //   timestamp: ""
+    // }
     this.subscribeText();
     this.timetest = Date.now();
 
@@ -98,14 +101,17 @@ export class ControlCenterPage implements OnInit {
     // var homeLatitude = 24.147911; 
     // var homeLongitude = 120.673141;
     await this.checkGPSPermission()
-    var homeLatitude = this.latitude;
-    var homeLongitude = this.longitude;
-    this.storage.get('coords').then((p) => {
-      homeLatitude = p.latitude,
-        homeLongitude = p.longitude,
-        console.log('Your coords is', p);
-    });
-    var c = 0.5;//ＫＭ
+    var homeLatitude  = this.HomeLatitude;
+    var homeLongitude =    this.HomeLongitude;
+    // this.storage.get('HomeCoords').then((p) => {
+    //   homeLatitude = p.latitude,
+    //     homeLongitude = p.longitude,
+    //     console.log('Your HomeCoords is', p);
+    // });
+    // var homeLatitude = 24.1497895;
+    // var homeLongitude = 120.6703476;
+    // var c = 0.5;//ＫＭ
+    var c = 0.1;//ＫＭ
     var lat_diff = c / 110.574;  //利用距離的比例來算出緯度上的比例
     var lon_distance = 111.320 * Math.cos(homeLatitude * Math.PI / 180); //算出該緯度上的經度長度
     var lon_diff = c / lon_distance; //利用距離的比例來算出經度上的比例
@@ -116,18 +122,26 @@ export class ControlCenterPage implements OnInit {
       this.E = homeLongitude + Math.abs(lon_diff),
       this.W = homeLongitude - Math.abs(lon_diff);
 
-
-    if (this.W < this.longitude && this.longitude < this.E && this.S < this.latitude && this.latitude < this.N) {
-      alert('location OK');
-      this.inHome = "OK";
+    if (this.W < this.longitude && this.longitude
+       < this.E && this.S < this.latitude && this.latitude < this.N) {
+      alert('目前在家中 location OK');
+      this.inHome = "目前在家中";
+      console.log('家',homeLatitude,homeLongitude );
+      console.log('家2',this.HomeLatitude,this.HomeLongitude);
+      console.log('所在', this.longitude , this.latitude );
     } else {
-      alert('location NO');
+      alert('目前在外面 location NO');
+      this.inHome = "目前在外面";
+      console.log('家',homeLatitude,homeLongitude );
+      console.log('家2',this.HomeLatitude,this.HomeLongitude);
+      console.log('所在', this.longitude , this.latitude );
+
     }
   }
 
   async getHomeLocltion() {
     await this.checkGPSPermission()
-    this.storage.set('coords', {
+    this.storage.set('HomeCoords', {
       latitude: this.latitude,
       longitude: this.longitude
     });
@@ -186,10 +200,11 @@ export class ControlCenterPage implements OnInit {
     this.geolocation.getCurrentPosition().then((resp) => {
       this.latitude = resp.coords.latitude;
       this.longitude = resp.coords.longitude;
-      this.locationCoords.accuracy = resp.coords.accuracy;
-      this.locationCoords.timestamp = resp.timestamp;
-      console.log(this.latitude)
-      console.log(this.longitude)
+      // this.locationCoords.accuracy = resp.coords.accuracy;
+      // this.locationCoords.timestamp = resp.timestamp;
+      console.log("Get New  LC");
+      console.log(this.latitude);
+      console.log(this.longitude);
       //  this.storage.set('coords', {
       //   latitude:this.latitude,
       //   longitude:this.longitude
